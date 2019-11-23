@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Theorie der Spiele</title>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <script>
+    const answers = [7, 7, 4, 9, 9, 7, 4, 8, 8];
+    const reviewExercise1 = () => {
+      for (let i = 0; i < answers.length; i++) {
+        if (document.getElementById(i + 1).value != answers[i]) {
+          document.getElementById(i + 1).style.color = "red";
+        } else {
+          document.getElementById(i + 1).style.color = "green";
+        }
+      }
+    }
+    const answerExercise1 = () => {
+      for (let i = 0; i < answers.length; i++) {
+        if (document.getElementById(i + 1).value != answers[i]) {
+          document.getElementById(i + 1).style.color = "red";
+          document.getElementById(i + 1).value = answers[i];
+        }
+      }
+    }
+    const resetExercise1 = () => {
+      for (let i = 0; i < answers.length; i++) {
+        document.getElementById(i + 1).value = "";
+        document.getElementById(i + 1).style.color = "black";
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <h1>KI & Spiele</h1>
+
+  <h2>1. Adverserielle Suche</h2>
+
+  <h3>Geld in Taschen in Taschen</h3>
+
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi dolor nihil
+  laudantium quia. Magnam vero vel omnis ipsa quia, inventore numquam commodi
+  adipisci quo, natus quae dignissimos dolor laboriosam culpa?
+
+  <details class="aufgabe">
+    <summary>Aufgabe 1</summary>
+    <div class="content">
+
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam quod
+        quisquam maxime quos sequi eius at autem perspiciatis voluptatem quidem,
+        ad quo eaque placeat molestiae dolore aliquam reiciendis iusto optio?
+      </p>
+      <div class="tree">
+        <ul>
+          <li>
+            <input class="green" id="1" type="text" />
+            <ul>
+              <li>
+                <input class="red" id="2" type="text" />
+                <ul>
+                  <li>
+                    <input class="green" id="3" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">7</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">9</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">1</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <input class="green" id="4" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">5</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">2</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">9</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <input class="green" id="5" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">3</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">7</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">6</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <input class="red" id="6" type="text" />
+                <ul>
+                  <li>
+                    <input class="green" id="7" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">2</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">1</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">4</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <input class="green" id="8" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">1</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">8</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <input class="green" id="9" type="text" />
+                    <ul>
+                      <li>
+                        <a class="red" href="#">8</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">2</a>
+                      </li>
+                      <li>
+                        <a class="red" href="#">1</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button onclick="reviewExercise1()">Korrigieren</button>
+    <button onclick="answerExercise1()">Lösung</button>
+    <button onclick="resetExercise1()">Reset</button>
+  </details>
+
+
+
+  <h2>2. Prisoners Dilemma</h2>
+  <h3>Klassische Prisoners Dilemma</h3>
+  <div class="text-with-image">
+    <div>
+      <p>
+        Kontext: Zwei Gefangene werden beschuldigt gemeinsam ein Verbrechen
+        begangen zu haben. Die beiden Gefangenen werden einzeln verhört und
+        haben
+        nicht die Möglichkeit miteinander zu kommunizieren. Jeder der beiden
+        Gefangenen hat nun zwei Möglichkeiten: leugnen oder gestehen. <br>
+      </p>
+      Hier ist die Pay-Off-Matrix, die den Nutzen der jeweiligen
+      <b>Strategie</b>
+      (schweigen, oder gestehen) enthält:
+    </div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <td></td>
+          <td>B: leugnen</td>
+          <td>B: gestehen</td>
+        </tr>
+        <tr>
+          <td>
+            A:leugnen
+          </td>
+          <td>A: -1 | B: -1</td>
+          <td>A: -10 | B: 0</td>
+        </tr>
+        <tr>
+          <td>
+            A:gestehen
+          </td>
+          <td>A: 0 | B: -10</td>
+          <td>A: -5 | B: -5</td>
+        </tr>
+      </table>
+      <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix</i></p>
+    </div>
+  </div>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 2</summary>
+    <div class="content">
+      Wie würdest du handeln? Würdest du leugnen, oder gestehen?
+    </div>
+  </details>
+
+  <p>
+    Eine <b>dominante Strategie</b> ist eine Strategie, die unter allen
+    möglichen Strategien (hier leugnen, oder gestehen) den höchsten Nutzen
+    bietet, unabhängig davon, was die anderen Akteure tun.
+  </p>
+
+  <p>
+    Ein <b>Nash-Equilibrium</b> ist eine Kombination aus Strategien, wobei
+    jeder Spieler genau eine Strategie wählt, von der aus es für keinen
+    Spieler sonnvoll ist, von der gewählten Strategie abzuweichen.
+  </p>
+  <p>
+    Das Nash-Equilibrium besteht beim Prisoners Dilemma in der Kombination aus
+    Strategien, wo beide gestehen.
+  </p>
+  <p>
+    Das Dilemma besteht darin, dass der aufaddierte Nutzen der beiden Spieler
+    im Nash-Equilibrium schlechter ist, als wenn beide leugnen.
+  </p>
+
+  <h3>Prisoners Dilemma mit einer Endlichen Rundenanzahl</h3>
+
+  <p>
+    Stellen wir uns nun vor, dass beiden Spielern gesagt wird, dass das Spiel
+    100 mal wiederholt wird. Werden die beiden Spieler nun ihre Strategie
+    ändern, um kürzer ins Gefängnis gehen zu müssen?
+  </p>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 3</summary>
+    <div class="content">
+      Denke dir einen Beweis dafür aus, dass zwei rationale Agenten
+      weiterhin in jeder Runde gestehen werden.
+    </div>
+  </details>
+
+  <details class="aufgabe">
+    <summary>Lösung Aufgabe 3</summary>
+    <div class="content">
+      <p>
+        <!-- Ausklappbar -->
+        <!-- Noch mal drüber nachdenken, bezüglich der gewinnen und siegen Geschichte -->
+        Lösung: Den Beweis kann man sich wie eine Induktion vorstellen. <br />
+        Induktionsanfang: Am 100. Tag hat die Entscheidung der beiden Spieler
+        keinen Einfluss auf weitere Spieler. Ein rationaler Agent würde nun also
+        lediglich versuchen den für sich größten Nutzen rauszuziehen, indem er
+        gesteht. Gestehen hat größten Nutzen, weil ...
+        <br />
+        Nun gilt aber für den 99. Tag, dass dieser ebenfalls keine Auswirkung
+        auf
+        den 100. Tag hat, dementsprechend kann nun wieder jeder Agent so
+        handeln,
+        dass er das Optimum für diesen Tag rausholen kann... Noch verbessern...
+      </p>
+    </div>
+  </details>
+
+  <!-- TODO: Agent einführen -->
+
+  <h3>Prisoners Dilemma mit einer "unendlichen" Rundenanzahl</h3>
+
+  <p>
+    Nun wird den beiden Angeklagten nicht von Anfang an gesagt wie viele
+    Runden sie Spielen werden. Stattdessen wird ihnen gesagt, dass sie nach
+    jeder Runde mit einer Wahrscheilichkeit von 99% noch eine weitere Runde
+    spielen. Der Erwartungswert für die Rundenanzahl liegt somit immernoch bei
+    100 Runden.
+  </p>
+  <p>
+    Werden die Spieler nun ihr Verhalten verändern um kürzer ins Gefängnis zu
+    müssen?
+  </p>
+  <p>
+    Das kommt darauf an, was man optimieren möchte. Man unterscheidet zwischen
+    <b>siegen</b> und <b>gewinnen</b> . <br />
+    Beim siegen geht es einem Spieler darum kürzer, oder gleich lang ins
+    Gefängnis gehen zu
+    müssen, als der Gegenspieler. <br />
+    Beim gewinnen geht es einerm Spieler darum möglichst kurz ins Gefängnis zu
+    müssen.
+  </p>
+
+  <h4>Sieger-Strategie - "immer gestehen"</h4>
+
+  Bei der Strategie "immer gestehen" siegt ein Spieler immer gegen den anderen.
+  Um das zu beweisen, genügt es sich den Spieler B, also die rechte Spalte
+  anzuschauen.
+  Wenn Spieler B gesteht, und A leugnet, muss B kürzer ins Gefängnis und wenn
+  beide gestehen müssen beide gleich lang ins Gefängnis. Somit siegt Spieler B.
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <td></td>
+        <td>B: leugnen</td>
+        <td>B: gestehen</td>
+      </tr>
+      <tr>
+        <td>
+          A:leugnen
+        </td>
+        <td>A: -1 | B: -1</td>
+        <td>A: <span class="red">-10</span> | B: <span class="green">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          A:gestehen
+        </td>
+        <td>A: 0 | B: -10</td>
+        <td>A: <span class="red">-5</span> | B: <span class="green">-5</span>
+        </td>
+      </tr>
+    </table>
+    <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix mit farbiger Hervorhebung des
+        Nutzens, wenn Spieler B gesteht</i> </p>
+  </div>
+
+  <h4>Gewinnoptimierungs-Strategie - "Perpetual Punishment"</h4>
+  <p>
+    "Ich leugne solange, bis der andere gesteht. Ab dann gestehe ich immer."
+  </p>
+
+  <div class="table-container center">
+    <table>
+      <tr>
+        <td>
+          Random
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td>gestehen <br> 0 </td>
+        <td>gestehen <br> -5 </td>
+        <td>leugnen <br> -10 </td>
+        <td>gestehen <br> -5 </td>
+      </tr>
+      <tr>
+        <td>
+          Tit for Tat
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -10 </td>
+        <td>gestehen <br> -5 </td>
+        <td>gestehen <br> 0 </td>
+        <td>gestehen <br> -5 </td>
+      </tr>
+    </table>
+    <p> <i>Abb: Veranschaulichung der "Perpetual Punishment" Strategie </i> </p>
+  </div>
+
+  <div>Diese Strategie kann sehr gut sein, beispielsweise, wenn beide Spieler
+    Perpetual Punishment spielen und dementsprechend beide immer leugnen. <br>
+    Dann liegt der Erwartungswert (wenn mit einer 99%igen Wahrscheilichkeit eine
+    weitere Runde gespielt wird) für jeden Spieler bei:
+
+
+    $$
+    \begin{align}
+    & \sum_{i=0}^\infty (0.99)^i \cdot (-1) && \\
+    = & (-1) \cdot \sum_{i=0}^\infty (0.99)^i && | \mbox{Konstante ausklammern}
+    \\
+    = & (-1) \cdot \frac{1}{1-0.99} && | \mbox{Summe geometrische Reihe}
+    \\
+    = & -100
+    \end{align}
+    $$
+
+
+    Wenn Spieler A schon bei der ersten Iteration gesteht, dann liegt der
+    Erwartungswert für Spieler B, der die "Perpetual Punishment" Strategie
+    spielt bei:
+    $$-10 + \sum_{i=1}^\infty (0.99)^i \cdot (-5) = -505$$
+
+    Da diese Strategie nur in bestimmten Fällen sehr gut Erwartungswerte hat und
+    in anderen Fällen sehr schlechte Erwartungswerte hat, ist sie nur eine
+    <b>mittelmäßige</b> Gewinnoptimierungs-Strategie.
+
+  </div>
+
+  <h4>Gewinnoptimierungs-Strategie - "Tit for Tat"</h4>
+  <p>
+    "Wie du mir, so ich dir."
+  </p>
+
+  Ein Spieler, der mit der Strategie "Tit for Tat" spielt, leugnet immer in der
+  ersten Runde und kopiert in den nächsten Runden immer das Verhalten des
+  anderen Spielers aus der Runde davor.
+
+  <div class="table-container center">
+    <table>
+      <tr>
+        <td>
+          Random
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td>gestehen <br> 0 </td>
+        <td>gestehen <br> -5 </td>
+        <td>leugnen <br> -10 </td>
+        <td>leugnen <br> -1 </td>
+      </tr>
+      <tr>
+        <td>
+          Tit for Tat
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -10 </td>
+        <td>gestehen <br> -5 </td>
+        <td>gestehen <br> 0 </td>
+        <td>leugnen <br> -1 </td>
+      </tr>
+    </table>
+    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie </i> </p>
+  </div>
+
+  Die Strategie zeichnet sich dadurch aus, dass Spieler A, der diese
+  Strategie anwendet:
+  <ul class="ul">
+    <li>zu erst die <b>Kooperation</b> mit dem Gegenspieler anbietet, so dass
+      beide
+      Aussichten auf 1 Jahr im Gefängnis haben</li>
+    <li>den anderen <b>"bestraft"</b> , der gesteht und damit das Leugnen von
+      Spieler A
+      auszunutzt. A "bestraft" den Gegenspieler, indem er in der nächsten Runde
+      auch gesteht</li>
+    <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn Spieler
+      B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
+      wieder Aussichten auf 1 Jahr im Gefängnis</li>
+  </ul>
+
+  <div>
+    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat, tritt auf, wenn
+    beispielsweise beide Spieler "Tit for Tat" spielen und eine <b>Störung</b>
+    auftritt. Beispielsweise gesteht der Spieler doch, weil die
+    Polizei ihn so sehr unter Druck gesetzt hat. In diesem Fall entsteht ein
+    <b>Echo</b>, was sich dadurch auszeichnet, dass Spieler A und B abwechselng
+    leugnen und gestehen. Der Erwartungswert verschlechtert sich dann drastisch.
+  </div>
+
+  <div class="table-container center">
+    <table>
+      <tr>
+        <td>
+          Tit for Tat
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td class="red">gestehen <br> 0 </td>
+        <td>leugnen <br> -10 </td>
+        <td class="red">gestehen <br> 0 </td>
+        <td>leugnen <br> -10 </td>
+      </tr>
+      <tr>
+        <td>
+          Tit for Tat
+        </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -1 </td>
+        <td>leugnen <br> -10 </td>
+        <td class="red">gestehen <br> 0 </td>
+        <td>leugnen <br> -10 </td>
+        <td class="red">gestehen <br> 0 </td>
+      </tr>
+    </table>
+    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie bei einer Störung
+      </i> </p>
+  </div>
+
+  <!-- TODO: hier einen Link für weitere Strategien hinklatschen -->
+
+  <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
+
+  <h3>Rock, Paper, Scissors</h3>
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>$p_{BR}$</td>
+        <td>$p_{BP}$</td>
+        <td>$p_{BS}$</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>B: Rock</td>
+        <td>B: Paper</td>
+        <td>B: Scissors</td>
+      </tr>
+      <tr>
+        <td>$p_{AR}$</td>
+        <td>A: Rock</td>
+        <td>A: 0 | B: 0</td>
+        <td>A: -1 | B: 1</td>
+        <td>A: 1 | B: -1</td>
+      </tr>
+      <tr>
+        <td>$p_{AP}$</td>
+        <td>A: Paper</td>
+        <td>A: 1 | B: -1</td>
+        <td>A: 0 | B: 0</td>
+        <td>A: -1 | B: 1</td>
+      </tr>
+      <tr>
+        <td>$p_{AS}$</td>
+        <td>A: Scissors</td>
+        <td>A: -1 | B: 1</td>
+        <td>A: 1 | B: -1</td>
+        <td>A: 0 | B: 0</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Matching Pennies</h3>
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>$p_{BH}$</td>
+        <td>$p_{BT}$</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>B: Heads</td>
+        <td>B: Tails</td>
+      </tr>
+      <tr>
+        <td>$p_{AH}$</td>
+        <td>A: Heads</td>
+        <td>A: 100 | B: -100</td>
+        <td>A: -1 | B: 1</td>
+      </tr>
+      <tr>
+        <td>$p_{AT}$</td>
+        <td>A: Tails</td>
+        <td>A: -1 | B: 1</td>
+        <td>A: 1 | B: -1</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Was haben wir gelernt?</h2>
+
+</body>
+
+</html>
+
+<!-- TODO: Jonas Baum als interaktive Augabe machen -->
+<!-- TODO: Idee, fachbegriffe auf Wikipedia verlinken -->
+<!-- 
+    Wichtig:
+    - besser kontextualisieren 
+    - Summe geometrische Reihe erklären 
+    - Erwartungswerte gleich -> Beweis aufschreiben 
+    - sagen, dass wir den nutzen wert bei mehreren Runden prisonners Dilemma aufaddieren können
+-->
