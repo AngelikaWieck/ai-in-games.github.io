@@ -18,7 +18,7 @@
     </script>
 
   <script>
-    const answers = [7, 7, 4, 9, 9, 7, 4, 8, 8];
+    const answers = [7, 7, 4, 5];
     const reviewExercise1 = () => {
       for (let i = 0; i < answers.length; i++) {
         if (document.getElementById(i + 1).value != answers[i]) {
@@ -43,137 +43,499 @@
       }
 
     }
+
+
   </script>
 </head>
 
 <body>
   <h1>KI & Spiele</h1>
 
+  <p>
+    Jeden Tag fällen wir Entscheidungen. Mal mit kleinen Konsequenzen, mal mit
+    vielen Konsequenzen. Mal mit Konsequenzen nur für uns selber, mal mit
+    Konsequenzen für sehr viele Menschen. Mal denken wir wenig nach dabei, mal
+    denken wir sehr genau nach. Aber wie können wir die besten Entscheidungen
+    treffen? Die wirklich beste Entscheidung können wir natürlich nur treffen,
+    wenn wir alle Konsequenzen kennen und bewerten können. Diesen Zustand nennt
+    man
+    <b>Perfect Information</b>. Game Theory versucht alltägliche Situationen auf
+    abstrakte Spiele abzubilden, um dann diese gut beschreibbaren und
+    handhabbaren Spiele
+    genau wie bekannte Spiele wie Schach zu analysieren, und die beste
+    Entscheidung zu finden. Diese Lehreinheit soll einen Überblick über
+    Entscheidungsfindung
+    bei Spielen mit Perfect Information geben, und das Ganze in den Kontext von
+    künstlicher Intelligenz bringen.
+  </p>
+
+
   <h2>1. Adverserielle Suche</h2>
 
-  <h3>Geld in Taschen in Taschen</h3>
+  <p>
+    Eine besondere Art von Spielen sind <b>Zero-sum-games</b>. Dies sind Spiele,
+    bei denen
+    die Summe des Ergebnisses am Ende bei jedem Spielausgang konstant ist. Wenn
+    zum
+    Beispiel zwei Spieler Alice und Bob Schach spielen, kann entweder Alice
+    gewinnen, dann kriegt Alice 1 Punkt und Bob 0, oder Bob gewinnt, dass kriegt
+    Alice 0 Punkte und Bob 1, oder es geht unentschieden aus, dann kriegt sowohl
+    Alice als auch Bob $\frac{1}{2}$ Punkt. Insgesamt wird also immer genau 1
+    Punkt
+    verteilt.
+    Wenn man sich nun noch vorstellt, dass beide Spieler $\frac{1}{2}$ Punkt als
+    Einsatz
+    gezahlt haben und die Einsätze zum Ergebnis addiert, kommt man immer aus 0,
+    daher der Name zero-sum-games. Ein etwas intuitiverer Name wäre vielleicht
+    constant-sum- games.
+  </p>
+  <br>
+  <p>
+    Für ein zwei Spieler zero-sum-game wollen wir nun einen Algorithmus
+    entwickeln,
+    der das Ergebnis berechnet, wenn beide Spieler optimal spielen. Dafür.
+    benötigen
+    wir eine Datenstruktur, um Spiele darzustellen. Hier bietet sich ein
+    gerichteter
+    Baum an. Jeder Knoten repräsentiert dann einen Spielzustand (die Wurzel den
+    Ausgangszustand) und jede Kante einen legalen Spielzug. Eine Kante $s =
+    (z_1, z_2)$ stellt also einen Spielzug $s$ dar, der beim Spielzustand $𝑧_1$
+    legal ist, und nach dem der Spielzustand $𝑧_2$ erreicht wird. Die Blätter
+    repräsentieren
+    Endzustände, die das Spiel beenden und haben einen Ergebniswert, der angibt
+    wie
+    viele Punkte der erste Spieler an der Reihe bekommt (dieser eine Wert reicht
+    aus, da durch die zero-sum-game Bedingung auch die Punktzahl für den anderen
+    Spieler abgeleitet werden kann). Den ersten Spieler nennen wir deshalb
+    𝑀𝐴𝑋
+    (er probiert den Ergebniswert zu maximieren) und den zweiten Spieler nennen
+    wir
+    𝑀𝐼𝑁, da er versucht den Ergebniswert zu minimieren. Als Eingabe erhält
+    unser
+    Algorithmus als einen solchen Baum und als Ausgabe wird der Ergebniswert
+    (Punktzahl vom ersten Spieler) produziert. Nach den beiden Spielern 𝑀𝐼𝑁
+    und
+    𝑀𝐴𝑋 nennen wir unseren Algorithmus 𝑀𝑖𝑛𝑖𝑚𝑎𝑥.
+  </p>
+  <br>
+  <p>
+    Der Algorithmus basiert auf einer Tiefensuche. Für jeden Knoten, beginnend
+    bei
+    der Wurzel, wird der Ergebniswert basierend auf dem Spieler an der Reihe und
+    den
+    Ergebniswerten der Kindknoten Basierend auf der folgenden Funktion
+    berechnet:
 
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi dolor nihil
-  laudantium quia. Magnam vero vel omnis ipsa quia, inventore numquam commodi
-  adipisci quo, natus quae dignissimos dolor laboriosam culpa?
+    $$ minimax(s) =
+    \begin{cases}
+    min\{minimax(k) \mid k \in s.Kinder\} & s.Spieler = MIN\\
+    max\{minimax(k) \mid k \in s.Kinder\} & s.Spieler = MAX\\
+    \end{cases}$$
+
+
+    Schon an der Definition der Funktion ist zu erkennen, dass dieser
+    Algorithmus
+    sehr leicht rekursiv zu implementieren ist. Alternativ kann mit Hilfe der
+    topologischen Sortierung auch Dynamische Programmierung auf dem Spielgraphen
+    implementiert werden.
+  </p>
+
 
   <details class="aufgabe">
     <summary>Aufgabe 1</summary>
     <div class="content">
 
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam quod
-        quisquam maxime quos sequi eius at autem perspiciatis voluptatem quidem,
-        ad quo eaque placeat molestiae dolore aliquam reiciendis iusto optio?
+      <p>Hast du den Algorithmus verstanden? Trage im Spielbaum die Minimax
+        Werte von jedem Knoten ein.
       </p>
-      <div class="tree">
-        <ul>
-          <li>
-            <input class="green" id="1" type="text" />
+      <!-- TODO: a durch p ersetzen!!! -->
+      <div class="center">
+        <div class="tree">
+          <ul>
+            <li>
+              <input class="green" id="1" type="text" />
+              <ul>
+                <li>
+                  <input class="red" id="2" type="text" />
+                  <ul>
+                    <li>
+                      <p class="green">9</p>
+                    </li>
+                    <li>
+                      <p class="green">9</p>
+                    </li>
+                    <li>
+                      <p class="green">7</p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input class="red" id="3" type="text" />
+                  <ul>
+                    <li>
+                      <p class="green">4</p>
+                    </li>
+                    <li>
+                      <p class="green">8</p>
+                    </li>
+                    <li>
+                      <p class="green">8</p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input class="red" id="4" type="text" />
+                  <ul>
+                    <li>
+                      <p class="green">9</p>
+                    </li>
+                    <li>
+                      <p class="green">5</p>
+                    </li>
+                    <li>
+                      <p class="green">7</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <button onclick="reviewExercise1()">Korrigieren</button>
+          <button onclick="answerExercise1()">Lösung</button>
+          <button onclick="resetExercise1()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </details>
+
+
+  <p>
+    Sowohl mit der rekursiven Implementierung als auch mit dynamischer
+    Programmierung resultiert eine für die Tiefensuche gewöhnliche Laufzeit in
+    $𝑂(|𝑉| + |𝐸|)$. Da es in einem gerichteten Baum eine Kante weniger als
+    Knoten gibt, ist das also eine Laufzeit von $𝑂(|𝑉|)$, also linear zur
+    Anzahl der Knoten bzw. Spielzustände. Bei einem Spiel mit $𝑟$ Runden und
+    jeweils $𝑠$ Spielzügen gibt es allerdings $𝑠^r$ Spielzustände und
+    𝑀𝑖𝑛𝑖𝑚𝑎𝑥 hat dann eine Laufzeit von $𝑂(𝑠^r)$.
+    <br>
+    <br>
+
+    Bei kleinen, simplen Spielen mag diese Laufzeit nicht zum Problem werden.
+    Betrachtet man aber ein komplexeres Spiel wie Schach sieht das anders aus.
+    Hier
+    gibt es bei einem durchschnittlichen Spiel ca. 100 Runden mit
+    durchschnittlich
+    ca. 35 möglichen Spielzügen. Es kommen also $35^{100} ≈ 10^{154}$ Knoten im
+    Spielbaum.
+    Hier kann, wenn dynamische Programmierung verwendet wird, noch ein wenig
+    optimiert werden, indem gleiche Spielzustände, die über verschiedene
+    Sequenzen
+    von Spielzügen erreicht werden können, zusammengefasst werden. Doch selbst
+    dann
+    gibt es immer noch ca. $10^{40}$ verschiedene Spielzustände.
+    <br>
+    <br>
+
+    Auch mit Optimierung, können von einer KI, die zeitbeschränkt den besten Zug
+    bestimmen soll, nicht alle möglichen Spielzustände evaluiert werden.
+    Stattdessen
+    wird der Spielbaum bis zu einer festgelegten Tiefe generiert. Der Nutzen der
+    so
+    entstandenen Blattknoten wird dann abgeschätzt. Allerdings leidet darunter
+    natürlich das Ergebnis, da es sehr schwierig ist, diesen Nutzen
+    abzuschätzen.
+    <br>
+    <br>
+
+    Abhilfe beschaffen kann da eine weitere Optimierung, das Alpha-Beta-Pruning.
+    Dafür schauen wir uns unser Beispiel von Aufgabe 1 nochmals an. Diesmal
+    wollen
+    wir allerdings genauer überlegen, was wir über den Wert eines Knotens
+    wissen,
+    während seine Kindknoten ausgewertet werden.
+  </p>
+
+  <div class="slides">
+    <div class="slide">
+      <div class="slide-content">
+        <div class="center">
+          <div class="tree">
             <ul>
               <li>
-                <input class="red" id="2" type="text" />
+                <p class="green">A: $(- \infty, + \infty)$</p>
                 <ul>
                   <li>
-                    <input class="green" id="3" type="text" />
+                    <p class="red">B: $(- \infty, 9)$</p>
                     <ul>
                       <li>
-                        <a class="red" href="#">7</a>
+                        <p class="green">E: 9</p>
                       </li>
                       <li>
-                        <a class="red" href="#">9</a>
+                        <p class="green">F: 9</p>
                       </li>
                       <li>
-                        <a class="red" href="#">1</a>
+                        <p class="gray">G: 7</p>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <input class="green" id="4" type="text" />
+                    <p class="gray">C</p>
                     <ul>
                       <li>
-                        <a class="red" href="#">5</a>
+                        <p class="gray">H: 4</p>
                       </li>
                       <li>
-                        <a class="red" href="#">2</a>
+                        <p class="gray">I: 8</p>
                       </li>
                       <li>
-                        <a class="red" href="#">9</a>
+                        <p class="gray">J: 8</p>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <input class="green" id="5" type="text" />
+                    <p class="gray">D</p>
                     <ul>
                       <li>
-                        <a class="red" href="#">3</a>
+                        <p class="gray">K: 9</p>
                       </li>
                       <li>
-                        <a class="red" href="#">7</a>
+                        <p class="gray">L: 5</p>
                       </li>
                       <li>
-                        <a class="red" href="#">6</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <input class="red" id="6" type="text" />
-                <ul>
-                  <li>
-                    <input class="green" id="7" type="text" />
-                    <ul>
-                      <li>
-                        <a class="red" href="#">2</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">1</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">4</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <input class="green" id="8" type="text" />
-                    <ul>
-                      <li>
-                        <a class="red" href="#">1</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">8</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <input class="green" id="9" type="text" />
-                    <ul>
-                      <li>
-                        <a class="red" href="#">8</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">2</a>
-                      </li>
-                      <li>
-                        <a class="red" href="#">1</a>
+                        <p class="gray">M: 7</p>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
             </ul>
-          </li>
-        </ul>
+          </div>
+        </div>
+        <p>
+          Noch nicht betrachtete Teile des Baums sind in ausgegraut. Für jeden
+          Knoten wird
+          sich gemerkt, wie groß sein Wert maximal und minimal sein kann. Diese
+          Werte
+          werden in den Intervallklammern dargestellt. Da Knoten E einen Wert
+          von
+          9 hat
+          und Knoten B ein MIN- Knoten ist, wissen wir, dass der Wert von B
+          maximal 9 sein
+          wird.
+        </p>
       </div>
     </div>
-    <button onclick="reviewExercise1()">Korrigieren</button>
-    <button onclick="answerExercise1()">Lösung</button>
-    <button onclick="resetExercise1()">Reset</button>
-  </details>
+    <div class="slide">
+      <div class="slide-content">
+        <div class="center">
+          <div class="tree">
+            <ul>
+              <li>
+                <p class="green">A: $(- \infty, + \infty)$</p>
+                <ul>
+                  <li>
+                    <p class="red">B: $(- \infty, 9)$</p>
+                    <ul>
+                      <li>
+                        <p class="green">E: 9</p>
+                      </li>
+                      <li>
+                        <p class="green">F: 9</p>
+                      </li>
+                      <li>
+                        <p class="gray">G: 7</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="gray">C</p>
+                    <ul>
+                      <li>
+                        <p class="gray">H: 4</p>
+                      </li>
+                      <li>
+                        <p class="gray">I: 8</p>
+                      </li>
+                      <li>
+                        <p class="gray">J: 8</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="gray">D</p>
+                    <ul>
+                      <li>
+                        <p class="gray">K: 9</p>
+                      </li>
+                      <li>
+                        <p class="gray">L: 5</p>
+                      </li>
+                      <li>
+                        <p class="gray">M: 7</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p>
+          Als nächstes wird Knoten F betrachtet. Er hat einen Wert von 9. Das
+          ändert für
+          Knoten B nichts, da 9 bereits die obere Grenze ist.
+        </p>
+      </div>
+    </div>
+    <div class="slide">
+      <p>
+        Nun kommt der letzte Kindknoten von B hinzu. Dieser hat einen Wert von
+        7. Da B
+        ein MIN- Knoten ist, wird 7gegenüber der vorherigen oberen Grenze 9
+        bevorzugt.
+        Da außerdem kein weiterer Kindknoten dazukommt, steht die 7 nun auch als
+        untere
+        Grenze für Knoten B fest. Damit ist dann auch die untere Grenze von
+        Knoten A
+        klar 7, da A ein MAX-Knoten ist und keine kleineren Werte als 7 gewählt
+        werden
+        würden.
+      </p>
+    </div>
+    <div class="slide">
+      <p>
+        Als nächstes wird H betrachtet. H hat einen Wert von 4, also gilt für
+        den
+        darüber liegenden MIN-Knoten C die obere Grenze von 4. Da A bereits eine
+        untere
+        Grenze von 7 hat, ist C damit unabhängig von I und J für A nicht mehr
+        interessant. I und J müssen also gar nicht mehr betrachtet werden. Dies
+        wird
+        Pruning genannt.
+      </p>
+    </div>
+    <div class="slide">
+      <p>
+        Nun wird K betrachtet. K hat einen Wert von 9. Also hat der darüber
+        liegende
+        MIN-Knoten D 9 als obere Grenze. 9 wäre für A aber interessant, da 9
+        größer als
+        7 ist. Also müssen weitere Kinder von D betrachtet werden. Da nun für
+        alle
+        Kinder von A eine obere Grenze feststeht, hat auch A nun eine obere
+        Grenze.
+      </p>
+    </div>
+    <div class="slide">
+      <p>
+        Als nächstes wird also L betrachtet. Damit bekommt D eine obere Grenze
+        von 5,
+        ist also wegen der unteren Grenze von A für A nicht mehr relevant. Das
+        letzte
+        Kind von D braucht also nicht mehr betrachtet werden. Für A steht nun
+        der exakte
+        Wert 7 fest.
+      </p>
+    </div>
 
+    <div id="slide-number">X / X</div>
+
+    <button class="slide-button-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="slide-button-right" onclick="plusDivs(1)">&#10095;</button>
+  </div>
+
+  <p>
+    Alpha-Beta-Pruning ist also prinzipiell immer noch 𝑀𝑖𝑛𝑖𝑚𝑎𝑥,
+    allerdings
+    werden zusätzlich zwei Variablen 𝛼 und 𝛽 verwendet, um die obere und
+    untere
+    Grenze für das Ergebnis eines jeden Knotens zu speichern. Dadurch können
+    uninteressante Teilbäume früher ignoriert werden. In unserem Beispiel
+    konnten
+    3
+    Teilbäume geprunt werden. Das mag auf den ersten Blick nicht gerade viel
+    erscheinen, aber wenn komplexere Spiele wie Schach betrachtet werden, können
+    häufig deutlich mehr Teilbäume mit viele größerer Tiefe geprunt werden und
+    somit
+    einiges an der Performance verbessert werden.
+
+    <br>
+    <br>
+
+    Was auffallen sollte ist, dass die Reihenfolge, in der die Spielzüge
+    ausgewertet
+    werden, nun enorm wichtig ist. Denn wenn zum Beispiel Knoten H und I
+    vertauscht
+    wären, dann könnte I nicht geprunt werden, weil Schritt 4 Knoten C eine
+    obere
+    Grenze von 8 hätte und somit für A noch interessant wäre. Auf der anderen
+    Seite
+    wäre eine Vertauschung von K und L sehr wünschenswert, da dann K geprunt
+    werden
+    könnte, weil schon in Schritt 5 die obere Grenze von 5 für D feststehen
+    würde.
+    Um die Spielzüge effizient in eine gute Reihenfolge zu bringen, werden in
+    der
+    Praxis Heuristiken angewendet. Diese sind natürlich sehr vom Spiel abhängig.
+    <br>
+    <br>
+    Beim Schach gibt es viele verschiedene Varianten, wie die Spielzüge
+    vorsortiert
+    werden können. Wir möchten davon nur eine beispielhaft betrachten. Dabei
+    werden
+    zuerst die Züge betrachtet, die eine gegnerische Figur schlagen. Innerhalb
+    dieser Züge wird nochmal weiter sortiert, nämlich werden zu erste die Züge
+    betrachtet, bei denen die gegnerische Dame geschlagen wird, dann ein
+    gegnerischer Turm, ..., und zum Schluss ein gegnerischer Bauer. Als nächstes
+    werden dann die Züge betrachtet, die eine gegnerische Figur bedrohen, also
+    die
+    Möglichkeit schaffen, im nächsten Zug zu schlagen. Auch hier wird die
+    gleiche
+    innere Reihenfolge verwendet. Alle restlichen Züge werden nur noch zuerst in
+    vorwärts und dann in rückwärts Bewegungen eingeteilt. Diese einfache
+    Heuristik
+    kann die KI schon deutlich verbessern.
+    <br>
+    <br>
+    Mit einer guten Heuristik, wie das Beispiel vom Schach, kann die Anzahl der
+    Spielzüge die pro Knoten ausgewertet werden müssen von 𝑠 auf ca. $\sqrt{s}$
+    verringert
+    werden.
+  </p>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 2</summary>
+    <div class="content">
+
+      <p>Wie verändert das die Laufzeit und was hat das für eine Auswirkung auf
+        die
+        Schach-KI, wenn weiterhin die gleiche Zeit für die Berechnung des
+        nächsten Zugs
+        zur Verfügung steht?
+      </p>
+
+    </div>
+  </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 2</summary>
+    <div class="content">
+
+      <p>Die Laufzeit verändert sich von $O(s^r)$ auf ca.
+        $O(\sqrt{s^r}) = O(s^{\frac{r}{2}})$.
+        Der
+        Exponent kann
+        also etwa halbiert werden. Dadurch kann die Schach-KI in der gleichen
+        Zeit den
+        Baum doppelt so tief generieren und somit deutlich bessere Ergebnisse
+        liefern,
+        da die Schätzungen für die Blattknoten deutlich verbessert werden
+        können.
+      </p>
+
+    </div>
+  </details>
 
 
   <h2>2. Prisoners Dilemma</h2>
@@ -498,7 +860,111 @@
 
   <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
 
+  <p>
+    Zum Abschluss betrachten wir die erneut das wichtige Konzept des
+    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien. Bei
+    einer <b>reinen Strategie</b> spielt der Spieler immer den gleichen
+    Spielzug. Bei einer <b>gemischten Strategie</b> wählt der Spieler mit
+    bestimmten Wahrscheinlichkeiten
+    $p_i$ aus den möglichen Spielzügen $s_i$ aus.
+    Wir erinnern uns, dass ein <b>Nash-Equilibrium</b> dann vorliegt, wenn es
+    sich für
+    keinen der Spieler lohnt, seine Strategie zu ändern. Es lässt sich der
+    folgende
+    Satz zeigen:
+
+  </p>
+
+  <br>
+
+  <p>
+    <b>Satz von Nash</b>: Erlaubt man gemischte Strategien, so gibt es in jedem
+    zero-sum-game ein Nash-Equilibrium.
+  </p>
+
+  <br>
+
+  <p>
+    Außerdem gilt der folgende Satz:
+  </p>
+
+  <br>
+
+  <p>
+    Satz der gleichen Erwartungswerte: In einem Nash-Equilibrium sind die
+    Erwartungswerte für die verschiedenen Spielzüge die ein Spieler in seiner
+    gemischten Strategie hat gleich.
+  </p>
+  <br>
+  <p>
+    <b>Beweis</b>: Wir führen den Beweis per Widerspruch. Seien die Strategien
+    von
+    Alice
+    und Bob so, dass sie sich in einem Nash-Equilibrium befinden. Nehmen wir nun
+    an,
+    dass die Erwartungswerte der Spielzüge die Alice in ihrer Strategie hat
+    nicht
+    gleich sind. Dann gibt es in der Strategie von Alice zwei Spielzüge $s_1,
+    s_2$
+    so,
+    dass der Erwartungswert für Alice, wenn sie $s_1$ spielt, größer ist als der
+    Erwartungswert, wenn sie $s_2$ spielt. Da Alice aber rational spielt, würde
+    sie
+    dann aber statt $s_2$ immer $s_1$ spielen. Sie würde also ihre Strategie
+    anpassen,
+    und damit ihren Erwartungswert steigern. Ein Widerspruch zur Annahme, dass
+    sich
+    Alice und Bob in einem Nash-Equilibrium befinden. Also kann unsere Annahme
+    nur
+    falsch sein. Die Erwartungswerte für die verschiedenen Spielzüge die ein
+    Spieler
+    in seiner gemischten Strategie hat müssen also gleich sein. $\blacksquare$
+
+  </p>
+
   <h3>Rock, Paper, Scissors</h3>
+
+  <p>
+    Betrachten wir nun das allen bekannte Spiel Rock, Paper, Scissors.
+    Bekanntlich
+    besiegt Rock Scissors, Scissors Paper und Paper Rock.
+  </p>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 5</summary>
+    <div class="content">
+      Warum gibt es bei Rock, Paper Scissors kein Nash-Equilibrium aus reinen
+      Strategien?
+    </div>
+  </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 5</summary>
+    <div class="content">
+      Jede reine Strategie kann durch eine andere reine Strategie besiegt
+      werden.
+      Somit kann bei jeder Kombination aus reinen Strategien einer der Spieler
+      reagieren um sich zu verbessern.
+    </div>
+  </details>
+
+  <p>
+    Nach dem Satz von Nash muss es aber ein Nash-Equilibrium mit gemischten
+    Strategien geben. Dieses wollen wir nun berechnen. Dafür benennen wir die
+    Wahrscheinlichkeiten mit denen die beiden Spieler die verschiedenen
+    Spielzüge
+    wählen. Beispielsweise steht $p_{AR}$ für die Wahrscheinlichkeit, dass
+    Spieler A
+    Rock spielt und $p_{BS}$ dafür, dass Spieler B Scissors
+    spielt. Um diese Wahrscheinlichkeiten zu berechnen nutzen wir den Satz der
+    gleichen Erwartungswerte. Demnach gilt nämlich, dass $E_A[Rock]$ (der
+    Erwartungswert für Spieler A,
+    wenn er Rock spielt), $E_A[Paper]$ und $E_A[Scissors]$ gleich sind.
+  </p>
+  <br>
+  <p class="red">Hier fehlt was</p>
+  <br>
+
+
 
   <div class="table-container">
     <table>
@@ -540,7 +1006,77 @@
     </table>
   </div>
 
+  <p>
+    Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von Rock,
+    Paper, Scissors symmetrisch ist. Interessanter wird das ganze bei einer
+    asymmetrischen Pay-Off- Matrix. Dafür betrachten wir als weiteres Spiel
+    Matching
+    Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie Heads
+    oder Tails spielen (die Münze wird nicht geworfen, sondern jeder Spieler
+    entscheidet, mit welcher Seite nach oben er die Münze auf den Tisch legt).
+    Wenn
+    nun beide Spieler das gleiche spielen, dann gewinnt Spieler A und wenn sie
+    unterschiedlich spielen, dann gewinnt Spieler B. Die Wahrscheinlichkeiten
+    für
+    die einzelnen Spielzüge benennen wir äquivalent zum vorherigen Beispiel
+    ($p_{AH}$
+    ist die Wahrscheinlichkeit dass Spieler A Heads spielt...).
+  </p>
+
   <h3>Matching Pennies</h3>
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>$p_{BH}$</td>
+        <td>$p_{BT}$</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>B: Heads</td>
+        <td>B: Tails</td>
+      </tr>
+      <tr>
+        <td>$p_{AH}$</td>
+        <td>A: Heads</td>
+        <td>A: 1 | B: -1</td>
+        <td>A: -1 | B: 1</td>
+      </tr>
+      <tr>
+        <td>$p_{AT}$</td>
+        <td>A: Tails</td>
+        <td>A: -1 | B: 1</td>
+        <td>A: 1 | B: -1</td>
+      </tr>
+    </table>
+  </div>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 6</summary>
+    <div class="content">
+      Diese Pay-Off-Matrix ist nun wieder symmetrisch. Was sind die
+      Wahrscheinlichkeiten für die Strategien, die das Nash-Equilibrium bilden?
+    </div>
+  </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 6</summary>
+    <div class="content">
+      Äquivalent zum Rock, Paper, Scissors Beispiel ergibt sich $p_{AH} = p_{AT}
+      = p_{BH} = p_{BT} = \frac{1}{2}$
+    </div>
+  </details>
+
+  <p>
+    Nun wollen wir aber die Pay-Off-Matrix ein wenig verändern. Spieler A
+    gewinnt
+    nun 100 Punkte, wenn er mit (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) gewinnt und weiterhin
+    nur
+    einen Punkt, wenn er mit (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) gewinnt.
+
+  </p>
 
   <div class="table-container">
     <table>
@@ -573,6 +1109,26 @@
 
   <h2>Was haben wir gelernt?</h2>
 
+  <script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("slide");
+      if (n > x.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = x.length }
+      document.getElementById("slide-number").innerText = slideIndex + "\/" + x.length
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      x[slideIndex - 1].style.display = "block";
+    }
+  </script>
 </body>
 
 </html>
@@ -585,4 +1141,6 @@
     - Summe geometrische Reihe erklären 
     - Erwartungswerte gleich -> Beweis aufschreiben 
     - sagen, dass wir den nutzen wert bei mehreren Runden prisonners Dilemma aufaddieren können
+    - Sollen die Studikinder nicht selber auf den Minimax Algo kommen??
+    - Beschreibungen, der Abbildungen (PayOff Matrizen)
 -->
