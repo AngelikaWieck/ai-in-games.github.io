@@ -870,42 +870,6 @@
     besiegt Rock Scissors, Scissors Paper und Paper Rock.
   </p>
 
-  <details class="aufgabe">
-    <summary>Aufgabe 5</summary>
-    <div class="content">
-      Warum gibt es bei Rock, Paper Scissors kein Nash-Equilibrium aus reinen
-      Strategien?
-    </div>
-  </details>
-  <details class="aufgabe">
-    <summary>Lösung der Aufgabe 5</summary>
-    <div class="content">
-      Jede reine Strategie kann durch eine andere reine Strategie besiegt
-      werden.
-      Somit kann bei jeder Kombination aus reinen Strategien einer der Spieler
-      reagieren um sich zu verbessern.
-    </div>
-  </details>
-
-  <p>
-    Nach dem Satz von Nash muss es aber ein Nash-Equilibrium mit gemischten
-    Strategien geben. Dieses wollen wir nun berechnen. Dafür benennen wir die
-    Wahrscheinlichkeiten mit denen die beiden Spieler die verschiedenen
-    Spielzüge
-    wählen. Beispielsweise steht $p_{AR}$ für die Wahrscheinlichkeit, dass
-    Spieler A
-    Rock spielt und $p_{BS}$ dafür, dass Spieler B Scissors
-    spielt. Um diese Wahrscheinlichkeiten zu berechnen nutzen wir den Satz der
-    gleichen Erwartungswerte. Demnach gilt nämlich, dass $E_A[Rock]$ (der
-    Erwartungswert für Spieler A,
-    wenn er Rock spielt), $E_A[Paper]$ und $E_A[Scissors]$ gleich sind.
-  </p>
-  <br>
-  <p class="red">Hier fehlt was</p>
-  <br>
-
-
-
   <div class="table-container">
     <table>
       <tr>
@@ -946,6 +910,88 @@
     </table>
   </div>
 
+  <details class="aufgabe">
+    <summary>Aufgabe 5</summary>
+    <div class="content">
+      Warum gibt es bei Rock, Paper Scissors kein Nash-Equilibrium aus reinen
+      Strategien?
+    </div>
+  </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 5</summary>
+    <div class="content">
+      Jede reine Strategie kann durch eine andere reine Strategie besiegt
+      werden.
+      Somit kann bei jeder Kombination aus reinen Strategien einer der Spieler
+      reagieren um sich zu verbessern.
+    </div>
+  </details>
+
+  <p>
+    Nach dem Satz von Nash muss es aber ein Nash-Equilibrium mit gemischten
+    Strategien geben. Dieses wollen wir nun berechnen. Dafür benennen wir die
+    Wahrscheinlichkeiten mit denen die beiden Spieler die verschiedenen
+    Spielzüge
+    wählen. Beispielsweise steht $p_{AR}$ für die Wahrscheinlichkeit, dass
+    Spieler A
+    Rock spielt und $p_{BS}$ dafür, dass Spieler B Scissors
+    spielt. Um diese Wahrscheinlichkeiten zu berechnen nutzen wir den Satz der
+    gleichen Erwartungswerte. Demnach gilt nämlich, dass $E_A[Rock]$ (der
+    Erwartungswert für Spieler A,
+    wenn er Rock spielt), $E_A[Paper]$ und $E_A[Scissors]$ gleich sind.
+  </p>
+  <br>
+  <p>Die Erwartungswerte für A können wir leicht mit den Ergebnissen von A und
+    den
+    Wahrscheinlichkeiten von B berechnen.</p>
+  <br>
+  <p>
+    $$
+    \begin{align}
+    E_A[Rock] &= 0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS}\\
+    E_A[Paper] &= 1\cdot p_{BR} + 0\cdot p_{BP} - 1\cdot p_{BS}\\
+    E_A[Scissors] &= -1\cdot p_{BR} + 1\cdot p_{BP} + 0\cdot p_{BS}
+    \end{align}
+    $$
+  </p>
+  <p>
+    Nun können wir $E_A[Rock]$ mit $E_A[Paper]$ und $E_A[Scissors]$
+    gleichsetzen:
+  </p>
+  <p>
+    $$
+    \begin{align}
+    0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= 1\cdot p_{BR} + 0\cdot
+    p_{BP} -
+    1\cdot p_{BS}\\
+    0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= -1\cdot p_{BR} + 1\cdot
+    p_{BP}
+    + 0\cdot p_{BS}
+    \end{align}
+    $$
+  </p>
+  <p>
+    Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BR}, p_{BP},
+    p_{BS}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
+    Gleichungssystem:
+  </p>
+  <p>
+    $$
+    \begin{align}
+    -1p_{BR} - 1p_{BP} + 2p_{BS} &= 0\\
+    1p_{BR} - 2p_{BP} + 1p_{BS} &= 0\\
+    1p_{BR} + 1p_{BP} + 1p_{BS} &= 1
+    \end{align}
+    $$
+  </p>
+  <p>
+    Aus diesem Gleichungssystem ergibt sich $p_{BR} = p_{BP} = p_{BS} =
+    \frac{1}{3}$. Äquivalent ergibt sich aus $E_B[Rock] = E_B[Paper] =
+    E_B[Scissors]$ für die Wahrscheinlichkeiten von A $p_{AR} = p_{AP} = p_{AS}
+    =
+    \frac{1}{3}$.
+  </p>
+  <br>
   <p>
     Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von
     Rock,
@@ -1022,9 +1068,6 @@
 
   </p>
 
-  <p class="red">Hier fehlt was</p>
-
-
   <div class="table-container">
     <table>
       <tr>
@@ -1053,6 +1096,85 @@
       </tr>
     </table>
   </div>
+
+  <p>
+    Genau wie im Rock, Paper, Scissors Beispiel nutzen wir den Satz der gleichen
+    Erwartungswerte:
+  </p>
+  <p>
+    $$
+    \begin{align}
+    E_A[Heads] = E_A[Tails]
+    \end{align}
+    $$
+  </p>
+  <p>
+    Die Erwartungswerte für A können wir wieder mit den Ergebnissen von A und
+    den Wahrscheinlichkeiten von B berechnen.
+  </p>
+  <p>
+    $$
+    \begin{align}
+    E_A[Heads] &= 100\cdot p_{BH} - 1\cdot p_{BT}\\
+    E_A[Tails] &= -1\cdot p_{BH} + 1\cdot p_{BT}
+    \end{align}
+    $$
+  </p>
+  <p>
+    Nun können wir $E_A[Heads]$ mit $E_A[Tails]$ gleichsetzen:
+  </p>
+  <p>
+    $$
+    \begin{align}
+    100\cdot p_{BH} - 1\cdot p_{BT} = -1\cdot p_{BH} + 1\cdot p_{BT}
+    \end{align}
+    $$
+  </p>
+  <p>
+    Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BH}$ und
+    $p_{BT}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
+    Gleichungssystem:
+  </p>
+  <p>
+    $$
+    \begin{align}
+    101p_{BH} - 2p_{BT} &= 0\\
+    1p_{BH} + 1p_{BT} &= 1
+    \end{align}
+    $$
+  </p>
+  <p>
+    Aus diesem Gleichungssystem ergibt sich $p_{BH} = \frac{2}{103}\approx
+    1,9\%$
+    und $p_{BT} = \frac{101}{103}\approx 98,1\%$. Auch hier ergibt sich
+    äquivalent
+    aus $E_B[Heads] = E_B[Tails]$ für die Wahrscheinlichkeiten von A $p_{AH} =
+    \frac{2}{103}\approx 1,9\%$ und $p_{AT} = \frac{101}{103}\approx 98,1\%$.
+  </p>
+
+  <details class="aufgabe">
+    <summary>Aufgabe 7</summary>
+    <div class="content">
+      $p_{AH} ≈ 1,9%$. Warum spielt Spieler A so selten Heads, obwohl er mit
+      Heads
+      die
+      Möglichkeit hat 100 Punkte zu machen und mit Tails nur 1 Punkt gewinnen
+      kann?
+    </div>
+  </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 7</summary>
+    <div class="content">
+      Das liegt daran, dass Spieler B natürlich Angst vor den -100 Punkten bei
+      (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) hat und daher sehr häufig Tails spielen wird. Das
+      kann
+      Spieler A dann ausnutzen, indem er auch häufig Tails spielt um dann mit
+      (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) 1 Punkt zu gewinnen. Beide spielen aber immer mal
+      wieder trotzdem Heads, damit sich der andere nicht darauf verlassen kann,
+      dass
+      immer Tails gespielt wird.
+    </div>
+  </details>
 
   <h2>Was haben wir gelernt?</h2>
 
