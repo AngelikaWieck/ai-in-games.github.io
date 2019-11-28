@@ -260,59 +260,7 @@
   <div class="slides">
     <div class="slide">
       <div class="slide-content">
-        <div class="center">
-          <div class="tree">
-            <ul>
-              <li>
-                <p class="green">A: $(- \infty, + \infty)$</p>
-                <ul>
-                  <li>
-                    <p class="red">B: $(- \infty, 9)$</p>
-                    <ul>
-                      <li>
-                        <p class="green">E: 9</p>
-                      </li>
-                      <li>
-                        <p class="green">F: 9</p>
-                      </li>
-                      <li>
-                        <p class="gray">G: 7</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <p class="gray">C</p>
-                    <ul>
-                      <li>
-                        <p class="gray">H: 4</p>
-                      </li>
-                      <li>
-                        <p class="gray">I: 8</p>
-                      </li>
-                      <li>
-                        <p class="gray">J: 8</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <p class="gray">D</p>
-                    <ul>
-                      <li>
-                        <p class="gray">K: 9</p>
-                      </li>
-                      <li>
-                        <p class="gray">L: 5</p>
-                      </li>
-                      <li>
-                        <p class="gray">M: 7</p>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <img src="ab1.png" alt="Abbildung 1 des prunings">
         <p>
           Noch nicht betrachtete Teile des Baums sind in ausgegraut. Für jeden
           Knoten wird
@@ -329,59 +277,7 @@
     </div>
     <div class="slide">
       <div class="slide-content">
-        <div class="center">
-          <div class="tree">
-            <ul>
-              <li>
-                <p class="green">A: $(- \infty, + \infty)$</p>
-                <ul>
-                  <li>
-                    <p class="red">B: $(- \infty, 9)$</p>
-                    <ul>
-                      <li>
-                        <p class="green">E: 9</p>
-                      </li>
-                      <li>
-                        <p class="green">F: 9</p>
-                      </li>
-                      <li>
-                        <p class="gray">G: 7</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <p class="gray">C</p>
-                    <ul>
-                      <li>
-                        <p class="gray">H: 4</p>
-                      </li>
-                      <li>
-                        <p class="gray">I: 8</p>
-                      </li>
-                      <li>
-                        <p class="gray">J: 8</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <p class="gray">D</p>
-                    <ul>
-                      <li>
-                        <p class="gray">K: 9</p>
-                      </li>
-                      <li>
-                        <p class="gray">L: 5</p>
-                      </li>
-                      <li>
-                        <p class="gray">M: 7</p>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <img src="ab2.png" alt="Abbildung 1 des prunings">
         <p>
           Als nächstes wird Knoten F betrachtet. Er hat einen Wert von 9. Das
           ändert für
@@ -390,54 +286,70 @@
       </div>
     </div>
     <div class="slide">
-      <p>
-        Nun kommt der letzte Kindknoten von B hinzu. Dieser hat einen Wert von
-        7. Da B
-        ein MIN- Knoten ist, wird 7gegenüber der vorherigen oberen Grenze 9
-        bevorzugt.
-        Da außerdem kein weiterer Kindknoten dazukommt, steht die 7 nun auch als
-        untere
-        Grenze für Knoten B fest. Damit ist dann auch die untere Grenze von
-        Knoten A
-        klar 7, da A ein MAX-Knoten ist und keine kleineren Werte als 7 gewählt
-        werden
-        würden.
-      </p>
+      <div class="slide-content">
+        <img src="ab3.png" alt="Abbildung 1 des prunings">
+        <p>
+          Nun kommt der letzte Kindknoten von B hinzu. Dieser hat einen Wert von
+          7. Da B
+          ein MIN- Knoten ist, wird 7gegenüber der vorherigen oberen Grenze 9
+          bevorzugt.
+          Da außerdem kein weiterer Kindknoten dazukommt, steht die 7 nun auch
+          als
+          untere
+          Grenze für Knoten B fest. Damit ist dann auch die untere Grenze von
+          Knoten A
+          klar 7, da A ein MAX-Knoten ist und keine kleineren Werte als 7
+          gewählt
+          werden
+          würden.
+        </p>
+      </div>
     </div>
     <div class="slide">
-      <p>
-        Als nächstes wird H betrachtet. H hat einen Wert von 4, also gilt für
-        den
-        darüber liegenden MIN-Knoten C die obere Grenze von 4. Da A bereits eine
-        untere
-        Grenze von 7 hat, ist C damit unabhängig von I und J für A nicht mehr
-        interessant. I und J müssen also gar nicht mehr betrachtet werden. Dies
-        wird
-        Pruning genannt.
-      </p>
+      <div class="slide-content">
+        <img src="ab4.png" alt="Abbildung 1 des prunings">
+        <p>
+          Als nächstes wird H betrachtet. H hat einen Wert von 4, also gilt für
+          den
+          darüber liegenden MIN-Knoten C die obere Grenze von 4. Da A bereits
+          eine
+          untere
+          Grenze von 7 hat, ist C damit unabhängig von I und J für A nicht mehr
+          interessant. I und J müssen also gar nicht mehr betrachtet werden.
+          Dies
+          wird
+          Pruning genannt.
+        </p>
+      </div>
     </div>
     <div class="slide">
-      <p>
-        Nun wird K betrachtet. K hat einen Wert von 9. Also hat der darüber
-        liegende
-        MIN-Knoten D 9 als obere Grenze. 9 wäre für A aber interessant, da 9
-        größer als
-        7 ist. Also müssen weitere Kinder von D betrachtet werden. Da nun für
-        alle
-        Kinder von A eine obere Grenze feststeht, hat auch A nun eine obere
-        Grenze.
-      </p>
+      <div class="slide-content">
+        <img src="ab5.png" alt="Abbildung 1 des prunings">
+        <p>
+          Nun wird K betrachtet. K hat einen Wert von 9. Also hat der darüber
+          liegende
+          MIN-Knoten D 9 als obere Grenze. 9 wäre für A aber interessant, da 9
+          größer als
+          7 ist. Also müssen weitere Kinder von D betrachtet werden. Da nun für
+          alle
+          Kinder von A eine obere Grenze feststeht, hat auch A nun eine obere
+          Grenze.
+        </p>
+      </div>
     </div>
     <div class="slide">
-      <p>
-        Als nächstes wird also L betrachtet. Damit bekommt D eine obere Grenze
-        von 5,
-        ist also wegen der unteren Grenze von A für A nicht mehr relevant. Das
-        letzte
-        Kind von D braucht also nicht mehr betrachtet werden. Für A steht nun
-        der exakte
-        Wert 7 fest.
-      </p>
+      <div class="slide-content">
+        <img src="ab6.png" alt="Abbildung 1 des prunings">
+        <p>
+          Als nächstes wird also L betrachtet. Damit bekommt D eine obere Grenze
+          von 5,
+          ist also wegen der unteren Grenze von A für A nicht mehr relevant. Das
+          letzte
+          Kind von D braucht also nicht mehr betrachtet werden. Für A steht nun
+          der exakte
+          Wert 7 fest.
+        </p>
+      </div>
     </div>
 
     <div id="slide-number">X / X</div>
@@ -456,7 +368,8 @@
     konnten
     3
     Teilbäume geprunt werden. Das mag auf den ersten Blick nicht gerade viel
-    erscheinen, aber wenn komplexere Spiele wie Schach betrachtet werden, können
+    erscheinen, aber wenn komplexere Spiele wie Schach betrachtet werden,
+    können
     häufig deutlich mehr Teilbäume mit viele größerer Tiefe geprunt werden und
     somit
     einiges an der Performance verbessert werden.
@@ -478,7 +391,8 @@
     würde.
     Um die Spielzüge effizient in eine gute Reihenfolge zu bringen, werden in
     der
-    Praxis Heuristiken angewendet. Diese sind natürlich sehr vom Spiel abhängig.
+    Praxis Heuristiken angewendet. Diese sind natürlich sehr vom Spiel
+    abhängig.
     <br>
     <br>
     Beim Schach gibt es viele verschiedene Varianten, wie die Spielzüge
@@ -488,19 +402,23 @@
     zuerst die Züge betrachtet, die eine gegnerische Figur schlagen. Innerhalb
     dieser Züge wird nochmal weiter sortiert, nämlich werden zu erste die Züge
     betrachtet, bei denen die gegnerische Dame geschlagen wird, dann ein
-    gegnerischer Turm, ..., und zum Schluss ein gegnerischer Bauer. Als nächstes
+    gegnerischer Turm, ..., und zum Schluss ein gegnerischer Bauer. Als
+    nächstes
     werden dann die Züge betrachtet, die eine gegnerische Figur bedrohen, also
     die
     Möglichkeit schaffen, im nächsten Zug zu schlagen. Auch hier wird die
     gleiche
-    innere Reihenfolge verwendet. Alle restlichen Züge werden nur noch zuerst in
+    innere Reihenfolge verwendet. Alle restlichen Züge werden nur noch zuerst
+    in
     vorwärts und dann in rückwärts Bewegungen eingeteilt. Diese einfache
     Heuristik
     kann die KI schon deutlich verbessern.
     <br>
     <br>
-    Mit einer guten Heuristik, wie das Beispiel vom Schach, kann die Anzahl der
-    Spielzüge die pro Knoten ausgewertet werden müssen von 𝑠 auf ca. $\sqrt{s}$
+    Mit einer guten Heuristik, wie das Beispiel vom Schach, kann die Anzahl
+    der
+    Spielzüge die pro Knoten ausgewertet werden müssen von 𝑠 auf ca.
+    $\sqrt{s}$
     verringert
     werden.
   </p>
@@ -509,7 +427,8 @@
     <summary>Aufgabe 2</summary>
     <div class="content">
 
-      <p>Wie verändert das die Laufzeit und was hat das für eine Auswirkung auf
+      <p>Wie verändert das die Laufzeit und was hat das für eine Auswirkung
+        auf
         die
         Schach-KI, wenn weiterhin die gleiche Zeit für die Berechnung des
         nächsten Zugs
@@ -630,7 +549,8 @@
         <!-- Noch mal drüber nachdenken, bezüglich der gewinnen und siegen Geschichte -->
         Lösung: Den Beweis kann man sich wie eine Induktion vorstellen. <br />
         Induktionsanfang: Am 100. Tag hat die Entscheidung der beiden Spieler
-        keinen Einfluss auf weitere Spieler. Ein rationaler Agent würde nun also
+        keinen Einfluss auf weitere Spieler. Ein rationaler Agent würde nun
+        also
         lediglich versuchen den für sich größten Nutzen rauszuziehen, indem er
         gesteht. Gestehen hat größten Nutzen, weil ...
         <br />
@@ -638,7 +558,8 @@
         auf
         den 100. Tag hat, dementsprechend kann nun wieder jeder Agent so
         handeln,
-        dass er das Optimum für diesen Tag rausholen kann... Noch verbessern...
+        dass er das Optimum für diesen Tag rausholen kann... Noch
+        verbessern...
       </p>
     </div>
   </details>
@@ -670,11 +591,13 @@
 
   <h4>Sieger-Strategie - "immer gestehen"</h4>
 
-  Bei der Strategie "immer gestehen" siegt ein Spieler immer gegen den anderen.
+  Bei der Strategie "immer gestehen" siegt ein Spieler immer gegen den
+  anderen.
   Um das zu beweisen, genügt es sich den Spieler B, also die rechte Spalte
   anzuschauen.
   Wenn Spieler B gesteht, und A leugnet, muss B kürzer ins Gefängnis und wenn
-  beide gestehen müssen beide gleich lang ins Gefängnis. Somit siegt Spieler B.
+  beide gestehen müssen beide gleich lang ins Gefängnis. Somit siegt Spieler
+  B.
 
   <div class="table-container">
     <table>
@@ -700,7 +623,8 @@
         </td>
       </tr>
     </table>
-    <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix mit farbiger Hervorhebung des
+    <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix mit farbiger Hervorhebung
+        des
         Nutzens, wenn Spieler B gesteht</i> </p>
   </div>
 
@@ -734,19 +658,22 @@
         <td>gestehen <br> -5 </td>
       </tr>
     </table>
-    <p> <i>Abb: Veranschaulichung der "Perpetual Punishment" Strategie </i> </p>
+    <p> <i>Abb: Veranschaulichung der "Perpetual Punishment" Strategie </i>
+    </p>
   </div>
 
   <div>Diese Strategie kann sehr gut sein, beispielsweise, wenn beide Spieler
     Perpetual Punishment spielen und dementsprechend beide immer leugnen. <br>
-    Dann liegt der Erwartungswert (wenn mit einer 99%igen Wahrscheilichkeit eine
+    Dann liegt der Erwartungswert (wenn mit einer 99%igen Wahrscheilichkeit
+    eine
     weitere Runde gespielt wird) für jeden Spieler bei:
 
 
     $$
     \begin{align}
     & \sum_{i=0}^\infty (0.99)^i \cdot (-1) && \\
-    = & (-1) \cdot \sum_{i=0}^\infty (0.99)^i && | \mbox{Konstante ausklammern}
+    = & (-1) \cdot \sum_{i=0}^\infty (0.99)^i && | \mbox{Konstante
+    ausklammern}
     \\
     = & (-1) \cdot \frac{1}{1-0.99} && | \mbox{Summe geometrische Reihe}
     \\
@@ -760,7 +687,8 @@
     spielt bei:
     $$-10 + \sum_{i=1}^\infty (0.99)^i \cdot (-5) = -505$$
 
-    Da diese Strategie nur in bestimmten Fällen sehr gut Erwartungswerte hat und
+    Da diese Strategie nur in bestimmten Fällen sehr gut Erwartungswerte hat
+    und
     in anderen Fällen sehr schlechte Erwartungswerte hat, ist sie nur eine
     <b>mittelmäßige</b> Gewinnoptimierungs-Strategie.
 
@@ -771,7 +699,8 @@
     "Wie du mir, so ich dir."
   </p>
 
-  Ein Spieler, der mit der Strategie "Tit for Tat" spielt, leugnet immer in der
+  Ein Spieler, der mit der Strategie "Tit for Tat" spielt, leugnet immer in
+  der
   ersten Runde und kopiert in den nächsten Runden immer das Verhalten des
   anderen Spielers aus der Runde davor.
 
@@ -811,20 +740,25 @@
       Aussichten auf 1 Jahr im Gefängnis haben</li>
     <li>den anderen <b>"bestraft"</b> , der gesteht und damit das Leugnen von
       Spieler A
-      auszunutzt. A "bestraft" den Gegenspieler, indem er in der nächsten Runde
+      auszunutzt. A "bestraft" den Gegenspieler, indem er in der nächsten
+      Runde
       auch gesteht</li>
-    <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn Spieler
+    <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn
+      Spieler
       B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
       wieder Aussichten auf 1 Jahr im Gefängnis</li>
   </ul>
 
   <div>
-    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat, tritt auf, wenn
+    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat, tritt auf,
+    wenn
     beispielsweise beide Spieler "Tit for Tat" spielen und eine <b>Störung</b>
     auftritt. Beispielsweise gesteht der Spieler doch, weil die
     Polizei ihn so sehr unter Druck gesetzt hat. In diesem Fall entsteht ein
-    <b>Echo</b>, was sich dadurch auszeichnet, dass Spieler A und B abwechselng
-    leugnen und gestehen. Der Erwartungswert verschlechtert sich dann drastisch.
+    <b>Echo</b>, was sich dadurch auszeichnet, dass Spieler A und B
+    abwechselng
+    leugnen und gestehen. Der Erwartungswert verschlechtert sich dann
+    drastisch.
   </div>
 
   <div class="table-container center">
@@ -852,7 +786,8 @@
         <td class="red">gestehen <br> 0 </td>
       </tr>
     </table>
-    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie bei einer Störung
+    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie bei einer
+        Störung
       </i> </p>
   </div>
 
@@ -862,7 +797,8 @@
 
   <p>
     Zum Abschluss betrachten wir die erneut das wichtige Konzept des
-    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien. Bei
+    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien.
+    Bei
     einer <b>reinen Strategie</b> spielt der Spieler immer den gleichen
     Spielzug. Bei einer <b>gemischten Strategie</b> wählt der Spieler mit
     bestimmten Wahrscheinlichkeiten
@@ -878,7 +814,8 @@
   <br>
 
   <p>
-    <b>Satz von Nash</b>: Erlaubt man gemischte Strategien, so gibt es in jedem
+    <b>Satz von Nash</b>: Erlaubt man gemischte Strategien, so gibt es in
+    jedem
     zero-sum-game ein Nash-Equilibrium.
   </p>
 
@@ -900,15 +837,18 @@
     <b>Beweis</b>: Wir führen den Beweis per Widerspruch. Seien die Strategien
     von
     Alice
-    und Bob so, dass sie sich in einem Nash-Equilibrium befinden. Nehmen wir nun
+    und Bob so, dass sie sich in einem Nash-Equilibrium befinden. Nehmen wir
+    nun
     an,
     dass die Erwartungswerte der Spielzüge die Alice in ihrer Strategie hat
     nicht
     gleich sind. Dann gibt es in der Strategie von Alice zwei Spielzüge $s_1,
     s_2$
     so,
-    dass der Erwartungswert für Alice, wenn sie $s_1$ spielt, größer ist als der
-    Erwartungswert, wenn sie $s_2$ spielt. Da Alice aber rational spielt, würde
+    dass der Erwartungswert für Alice, wenn sie $s_1$ spielt, größer ist als
+    der
+    Erwartungswert, wenn sie $s_2$ spielt. Da Alice aber rational spielt,
+    würde
     sie
     dann aber statt $s_2$ immer $s_1$ spielen. Sie würde also ihre Strategie
     anpassen,
@@ -1007,11 +947,13 @@
   </div>
 
   <p>
-    Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von Rock,
+    Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von
+    Rock,
     Paper, Scissors symmetrisch ist. Interessanter wird das ganze bei einer
     asymmetrischen Pay-Off- Matrix. Dafür betrachten wir als weiteres Spiel
     Matching
-    Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie Heads
+    Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie
+    Heads
     oder Tails spielen (die Münze wird nicht geworfen, sondern jeder Spieler
     entscheidet, mit welcher Seite nach oben er die Münze auf den Tisch legt).
     Wenn
@@ -1058,13 +1000,15 @@
     <summary>Aufgabe 6</summary>
     <div class="content">
       Diese Pay-Off-Matrix ist nun wieder symmetrisch. Was sind die
-      Wahrscheinlichkeiten für die Strategien, die das Nash-Equilibrium bilden?
+      Wahrscheinlichkeiten für die Strategien, die das Nash-Equilibrium
+      bilden?
     </div>
   </details>
   <details class="aufgabe">
     <summary>Lösung der Aufgabe 6</summary>
     <div class="content">
-      Äquivalent zum Rock, Paper, Scissors Beispiel ergibt sich $p_{AH} = p_{AT}
+      Äquivalent zum Rock, Paper, Scissors Beispiel ergibt sich $p_{AH} =
+      p_{AT}
       = p_{BH} = p_{BT} = \frac{1}{2}$
     </div>
   </details>
@@ -1077,6 +1021,9 @@
     einen Punkt, wenn er mit (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) gewinnt.
 
   </p>
+
+  <p class="red">Hier fehlt was</p>
+
 
   <div class="table-container">
     <table>

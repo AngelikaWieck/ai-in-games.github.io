@@ -237,3 +237,9 @@ td {
   right: 2px;
 }
 
+img {
+  max-width: 800px;
+  max-height: 200px;
+
+}
+
