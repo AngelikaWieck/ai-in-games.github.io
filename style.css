@@ -245,6 +245,10 @@ img {
 
 }
 
+.space {
+  height: 2em;
+}
+
 footer {
   height: 2em;
 }
