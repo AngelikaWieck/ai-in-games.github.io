@@ -1188,6 +1188,58 @@
   </details>
 
   <h2>Was haben wir gelernt?</h2>
+  <ul class="ul">
+    <li>Bei Perfect Information zero-sum-games kann eine KI mit unbegrenzter
+      Zeit dem
+      einfachen Minimax Algorithmus folgen um die optimale Strategie zu spielen.
+      Sobald die KI zeitbeschränkt ist, oder das Spiel so komplex wird, dass ein
+      komplettes Generieren des Spielbaums nicht mehr praktikabel ist, kann der
+      Baum
+      mit Hilfe von Alpha-Beta-Pruning und einer guten Move-Ordering-Heuristik
+      doppelt
+      so tief generiert werden wie ohne.
+    </li>
+    <li>
+      Das Nash-Equilibrium, also die Kombination aus Strategien bei der es sich
+      für keinen Spieler lohnt seine Strategie zu ändern ohne, dass der andere
+      dies ebenfalls tut, liegt beim klassischen Prisonners Dilemma, bei der
+      Kombination (gestehen, gestehen). Durch eine undefinierte Anzahl an
+      Wiederholungen des Spiels ziehen Spieler dennoch in Betracht zu leugnen,
+      um ihren Gewinn zu optimieren.
+    </li>
+    <li>
+      Bei einfachen Spielen, bei denen beide Spieler entscheiden welchen
+      Spielzug sie spielen, ohne zu wissen was der andere spielt, gibt es mit
+      gemischten Strategien immer ein Nash-Equilibrium
+    </li>
+  </ul>
+
+  <h2>Literatur</h2>
+  <ul class="ul">
+    <li>
+      Artificial Intelligence, A Modern Approach, Third Edition - Stuart Russel,
+      Peter Norvig
+    </li>
+    <li>
+      Introducing Game Theory: A Graphic Guide - Ivan Pastine, Tuvana Pastine,
+      Tom
+      Humberstone
+    </li>
+    <li>
+      The Joy Of Game Theory: An Introduction To Strategic Thinking - Presh
+      Talwalker
+    </li>
+    <li>
+      <a href="https://www.javatpoint.com/ai-adversarial-search">Adversarial
+        Search - Javatpoint</a>
+    </li>
+    <li>
+      <a href="https://de.wikipedia.org/wiki/Gefangenendilemma">Gefangenendilemma
+        - Wikipedia
+      </a>
+    </li>
+  </ul>
+
 
   <script>
     var slideIndex = 1;
@@ -1211,15 +1263,17 @@
   </script>
 </body>
 
+<footer></footer>
+
 </html>
 
 <!-- TODO: Idee, fachbegriffe auf Wikipedia verlinken -->
 <!-- 
     Wichtig:
     - besser kontextualisieren 
-    - Summe geometrische Reihe erklären 
-    - Erwartungswerte gleich -> Beweis aufschreiben 
+    - Done: Summe geometrische Reihe erklären 
+    - Done: Erwartungswerte gleich -> Beweis aufschreiben 
     - sagen, dass wir den nutzen wert bei mehreren Runden prisonners Dilemma aufaddieren können
     - Sollen die Studikinder nicht selber auf den Minimax Algo kommen??
-    - Beschreibungen, der Abbildungen (PayOff Matrizen)
+    - Done: Beschreibungen, der Abbildungen (PayOff Matrizen)
 -->
