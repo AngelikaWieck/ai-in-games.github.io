@@ -72,6 +72,9 @@
 
   <h2>1. Adverserielle Suche</h2>
 
+  <h3>
+    Zero-sum-games
+  </h3>
   <p>
     Eine besondere Art von Spielen sind <b>Zero-sum-games</b>. Dies sind Spiele,
     bei denen
@@ -89,11 +92,11 @@
     daher der Name zero-sum-games. Ein etwas intuitiverer Name wäre vielleicht
     constant-sum- games.
   </p>
-  <br>
+  <h3>Minimax</h3>
   <p>
     Für ein zwei Spieler zero-sum-game wollen wir nun einen Algorithmus
     entwickeln,
-    der das Ergebnis berechnet, wenn beide Spieler optimal spielen. Dafür.
+    der das Ergebnis berechnet, wenn beide Spieler optimal spielen. Dafür
     benötigen
     wir eine Datenstruktur, um Spiele darzustellen. Hier bietet sich ein
     gerichteter
@@ -210,7 +213,7 @@
     </div>
   </details>
 
-
+  <h3>Laufzeit von Minimax</h3>
   <p>
     Sowohl mit der rekursiven Implementierung als auch mit dynamischer
     Programmierung resultiert eine für die Tiefensuche gewöhnliche Laufzeit in
@@ -247,7 +250,9 @@
     natürlich das Ergebnis, da es sehr schwierig ist, diesen Nutzen
     abzuschätzen.
     <br>
-    <br>
+
+    <h3>Laufzeitverbesserung durch Pruning</h3>
+
 
     Abhilfe beschaffen kann da eine weitere Optimierung, das Alpha-Beta-Pruning.
     Dafür schauen wir uns unser Beispiel von Aufgabe 1 nochmals an. Diesmal
@@ -352,12 +357,12 @@
       </div>
     </div>
 
-    <div id="slide-number">X / X</div>
+    <div id="slide-number"></div>
 
     <button class="slide-button-left" onclick="plusDivs(-1)">&#10094;</button>
     <button class="slide-button-right" onclick="plusDivs(1)">&#10095;</button>
   </div>
-
+  <br>
   <p>
     Alpha-Beta-Pruning ist also prinzipiell immer noch 𝑀𝑖𝑛𝑖𝑚𝑎𝑥,
     allerdings
