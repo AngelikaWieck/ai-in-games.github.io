@@ -143,15 +143,16 @@
     implementiert werden.
   </p>
 
-
+  <!-- TODO: Baum Beispiel -->
+  
   <details class="aufgabe">
     <summary>Aufgabe 1</summary>
     <div class="content">
 
       <p>Hast du den Algorithmus verstanden? Trage im Spielbaum die Minimax
-        Werte von jedem Knoten ein.
+        Werte von jedem Knoten ein. Die grünen Felder stellen Entscheidungen 
+        von <span class="green">𝑀𝐴𝑋</span> dar, die roten die von <span class="red">𝑀𝐼𝑁</span>.  
       </p>
-      <!-- TODO: a durch p ersetzen!!! -->
       <div class="center">
         <div class="tree">
           <ul>
@@ -254,7 +255,7 @@
     <h3>Alpha-Beta-Pruning</h3>
 
 
-    Abhilfe beschaffen kann da eine weitere Optimierung, das Alpha-Beta-Pruning.
+    Abhilfe schaffen kann da eine weitere Optimierung, das Alpha-Beta-Pruning.
     Dafür schauen wir uns unser Beispiel von Aufgabe 1 nochmals an. Diesmal
     wollen
     wir allerdings genauer überlegen, was wir über den Wert eines Knotens
@@ -447,7 +448,7 @@
     <div class="content">
 
       <p>Die Laufzeit verändert sich von $O(s^r)$ auf ca.
-        $O(\sqrt{s^r}) = O(s^{\frac{r}{2}})$.
+        $O(\sqrt{s}^r) = O(s^{\frac{r}{2}})$.
         Der
         Exponent kann
         also etwa halbiert werden. Dadurch kann die Schach-KI in der gleichen
@@ -461,6 +462,9 @@
     </div>
   </details>
 
+  <br>
+  <br>
+  <p>Im nächsten Abschnitt analysieren wir ein Spiel, bei dem es sich nicht um ein Zero-sum-game handelt und finden heraus, was hier die beste Strategie ist.</p>
 
   <h2>2. Prisoners Dilemma</h2>
   <h3>Klassische Prisoners Dilemma</h3>
@@ -753,15 +757,15 @@
       B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
       wieder Aussichten auf 1 Jahr im Gefängnis</li>
   </ul>
-
+<br>
   <div>
-    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat, tritt auf,
+    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat tritt auf,
     wenn
     beispielsweise beide Spieler "Tit for Tat" spielen und eine <b>Störung</b>
-    auftritt. Beispielsweise gesteht der Spieler doch, weil die
+    auftritt. Beispielsweise gesteht ein Spieler doch, weil die
     Polizei ihn so sehr unter Druck gesetzt hat. In diesem Fall entsteht ein
     <b>Echo</b>, was sich dadurch auszeichnet, dass Spieler A und B
-    abwechselng
+    abwechselnd
     leugnen und gestehen. Der Erwartungswert verschlechtert sich dann
     drastisch.
   </div>
@@ -798,10 +802,22 @@
 
   <!-- TODO: hier einen Link für weitere Strategien hinklatschen -->
 
+
+  <p>
+    Anders als beim klassischen Prisonners Dilemma, ist es beim Prisonners 
+    Dilemma mit "unendlicher" Rundenanzahl nicht mehr so einfach das 
+    Nash-Equilibrium zu bestimmen. Dieses besteht nun nämlich nicht mehr 
+    aus reinen Strategien (also entweder die Strategie immer zu gestehen, 
+    oder immer zu leugnen), sondern besteht aus gemischten Strategien. 
+    Diese ist das Gegenteil einer reinen Strategie und besteht darin
+    teilweise zu leugnen und teilweise zu gestehen. Wie man unter solchen 
+    Bedingungen das Nash-Equilibrium berechnet erläutern wir im nächsten Kapitel.
+  </p>
+
   <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
 
   <p>
-    Zum Abschluss betrachten wir die erneut das wichtige Konzept des
+    Zum Abschluss betrachten wir erneut das wichtige Konzept des
     Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien.
     Bei
     einer <b>reinen Strategie</b> spielt der Spieler immer den gleichen
