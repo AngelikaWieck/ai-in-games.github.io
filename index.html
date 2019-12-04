@@ -144,14 +144,32 @@
   </p>
 
   <!-- TODO: Baum Beispiel -->
-  
+
   <details class="aufgabe">
     <summary>Aufgabe 1</summary>
     <div class="content">
 
-      <p>Hast du den Algorithmus verstanden? Trage im Spielbaum die Minimax
-        Werte von jedem Knoten ein. Die grünen Felder stellen Entscheidungen 
-        von <span class="green">𝑀𝐴𝑋</span> dar, die roten die von <span class="red">𝑀𝐼𝑁</span>.  
+      <p>
+        Hast du den Algorithmus verstanden? Stell dir folgendes Spiel vor: MIN
+        hat 3
+        Taschen mit je drei Geldbündeln verschiedener Werte. MAX bekommt eins
+        dieser
+        Geldbündel von MIN. Dafür darf MAX eine der drei Taschen auswählen und
+        dann darf
+        MIN aus den drei Geldbündeln aus dieser Tasche auswählen, welches MAX
+        bekommt.
+        Beide Spieler wissen welche Geldbündel in welchen Taschen sind und wie
+        viel die
+        verschiedenen Geldbündel wert sind. Logischer Weise möchte MAX
+        maximieren wie
+        viel Geld er bekommt, und MIN möchte minimieren wie viel MAX bekommt.
+        Trage im
+        Spielbaum die Minimax Werte von jedem Knoten ein. Die grünen Felder
+        stellen Entscheidungen
+        von <span class="green">𝑀𝐴𝑋</span> dar, die roten die von <span
+          class="red">𝑀𝐼𝑁</span>. Die Blattknoten
+        stellen
+        die Werte der Geldbündel dar.
       </p>
       <div class="center">
         <div class="tree">
@@ -163,13 +181,13 @@
                   <input class="red" id="2" type="text" />
                   <ul>
                     <li>
-                      <p class="green">9</p>
+                      <p>9</p>
                     </li>
                     <li>
-                      <p class="green">9</p>
+                      <p>9</p>
                     </li>
                     <li>
-                      <p class="green">7</p>
+                      <p>7</p>
                     </li>
                   </ul>
                 </li>
@@ -177,13 +195,13 @@
                   <input class="red" id="3" type="text" />
                   <ul>
                     <li>
-                      <p class="green">4</p>
+                      <p>4</p>
                     </li>
                     <li>
-                      <p class="green">8</p>
+                      <p>8</p>
                     </li>
                     <li>
-                      <p class="green">8</p>
+                      <p>8</p>
                     </li>
                   </ul>
                 </li>
@@ -191,13 +209,13 @@
                   <input class="red" id="4" type="text" />
                   <ul>
                     <li>
-                      <p class="green">9</p>
+                      <p>9</p>
                     </li>
                     <li>
-                      <p class="green">5</p>
+                      <p>5</p>
                     </li>
                     <li>
-                      <p class="green">7</p>
+                      <p>7</p>
                     </li>
                   </ul>
                 </li>
@@ -464,7 +482,9 @@
 
   <br>
   <br>
-  <p>Im nächsten Abschnitt analysieren wir ein Spiel, bei dem es sich nicht um ein Zero-sum-game handelt und finden heraus, was hier die beste Strategie ist.</p>
+  <p>Im nächsten Abschnitt analysieren wir ein Spiel, bei dem es sich nicht um
+    ein Zero-sum-game handelt und finden heraus, was hier die beste Strategie
+    ist.</p>
 
   <h2>2. Prisoners Dilemma</h2>
   <h3>Klassische Prisoners Dilemma</h3>
@@ -477,9 +497,10 @@
         nicht die Möglichkeit miteinander zu kommunizieren. Jeder der beiden
         Gefangenen hat nun zwei Möglichkeiten: leugnen oder gestehen. <br>
       </p>
-      Hier ist die Pay-Off-Matrix, die den Nutzen der jeweiligen
+      Rechts befindet sich die Pay-Off-Matrix, die den Nutzen der jeweiligen
       <b>Strategie</b>
-      (schweigen, oder gestehen) enthält:
+      (schweigen, oder gestehen) enthält. Der Nutzen entspricht den Jahren, die
+      ein Gefangener im Gefängnis absitzen muss.
     </div>
     <div class="table-container">
       <table>
@@ -503,7 +524,7 @@
           <td>A: -5 | B: -5</td>
         </tr>
       </table>
-      <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix</i></p>
+      <p> <i>Abb: Prisoners Dilemma Pay-Off-Matrix</i></p>
     </div>
   </div>
 
@@ -523,7 +544,7 @@
   <p>
     Ein <b>Nash-Equilibrium</b> ist eine Kombination aus Strategien, wobei
     jeder Spieler genau eine Strategie wählt, von der aus es für keinen
-    Spieler sonnvoll ist, von der gewählten Strategie abzuweichen.
+    Spieler sinnvoll ist, von der gewählten Strategie abzuweichen.
   </p>
   <p>
     Das Nash-Equilibrium besteht beim Prisoners Dilemma in der Kombination aus
@@ -533,6 +554,38 @@
     Das Dilemma besteht darin, dass der aufaddierte Nutzen der beiden Spieler
     im Nash-Equilibrium schlechter ist, als wenn beide leugnen.
   </p>
+
+  <h3>Alltagsbeispiele:</h3>
+  <p>
+    Das Prisoners Dilemma tritt im Alltag in vielen Situationen, fern von
+    Gefängnissen auf. Schauen wir uns das Beispiel von Werbung an. Stellen wir
+    uns also zwei Unternehmen vor, die beide gleich gute Waschmittel verkaufen
+    möchten.
+    Wenn beide Unternehmen keine Werbung machen, haben beide Unternehmen keine
+    Ausgaben für Werbung und wir können davon ausgehen, dass ungefähr 50% der
+    Kunden
+    das Waschmittel vom Unternehmen 1 kaufen und 50% das des Unternehmens 2.
+    Wenn nun genau ein Unternehmen Werbung schaltet, dann können wir uns
+    vorstellen, dass mehr Leute das Waschmittel dieses Unternehmens kaufen
+    würden. Wenn beide Unternehmen Werbung schalten, dann haben wir wieder die
+    selbe Kundenverteilung, wie wenn kein Unternehmen Werbung schaltet. <br>
+    Die dominante Strategie besteht also darin Werbung zu schalten. Somit
+    befindet sich das
+    Nash-Equilibrium darin, dass beide Unternehmen Werbung schalten, wodurch sie
+    ihre Ausgaben erhöhen, ohne die Einnahmen im Vergleich zu der Situation, wo
+    beide Unternehmen keine Werbung bezahlen zu steigern.
+    <br>
+    <br>
+    Weitere Beispiele sind:
+  </p>
+  <ul class="ul">
+    <li>Nationen, die Atomwaffen lagern</li>
+    <li>Athleten, die Drogen zur Leistungsverbesserung nehmen</li>
+    <li>Überfischung </li>
+    <li>...</li>
+  </ul>
+
+  <br>
 
   <h3>Prisoners Dilemma mit einer Endlichen Rundenanzahl</h3>
 
@@ -579,9 +632,9 @@
 
   <p>
     Nun wird den beiden Angeklagten nicht von Anfang an gesagt wie viele
-    Runden sie Spielen werden. Stattdessen wird ihnen gesagt, dass sie nach
-    jeder Runde mit einer Wahrscheilichkeit von 99% noch eine weitere Runde
-    spielen. Der Erwartungswert für die Rundenanzahl liegt somit immernoch bei
+    Runden sie spielen werden. Stattdessen wird ihnen gesagt, dass sie nach
+    jeder Runde mit einer Wahrscheinlichkeit von 99% noch eine weitere Runde
+    spielen. Der Erwartungswert für die Rundenanzahl liegt somit immer noch bei
     100 Runden.
   </p>
   <p>
@@ -590,11 +643,11 @@
   </p>
   <p>
     Das kommt darauf an, was man optimieren möchte. Man unterscheidet zwischen
-    <b>siegen</b> und <b>gewinnen</b> . <br />
-    Beim siegen geht es einem Spieler darum kürzer, oder gleich lang ins
+    <b>Siegen</b> und <b>Sewinnen</b>. <br />
+    Beim Siegen geht es einem Spieler darum kürzer, oder gleich lang ins
     Gefängnis gehen zu
     müssen, als der Gegenspieler. <br />
-    Beim gewinnen geht es einerm Spieler darum möglichst kurz ins Gefängnis zu
+    Beim Gewinnen geht es einem Spieler darum möglichst kurz ins Gefängnis zu
     müssen.
   </p>
 
@@ -632,7 +685,7 @@
         </td>
       </tr>
     </table>
-    <p> <i>Abb: Prisonners Dilemma Pay-Off-Matrix mit farbiger Hervorhebung
+    <p> <i>Abb: Prisoners Dilemma Pay-Off-Matrix mit farbiger Hervorhebung
         des
         Nutzens, wenn Spieler B gesteht</i> </p>
   </div>
@@ -673,7 +726,7 @@
 
   <div>Diese Strategie kann sehr gut sein, beispielsweise, wenn beide Spieler
     Perpetual Punishment spielen und dementsprechend beide immer leugnen. <br>
-    Dann liegt der Erwartungswert (wenn mit einer 99%igen Wahrscheilichkeit
+    Dann liegt der Erwartungswert (wenn mit einer 99%igen Wahrscheinlichkeit
     eine
     weitere Runde gespielt wird) für jeden Spieler bei:
 
@@ -744,12 +797,12 @@
   Die Strategie zeichnet sich dadurch aus, dass Spieler A, der diese
   Strategie anwendet:
   <ul class="ul">
-    <li>zu erst die <b>Kooperation</b> mit dem Gegenspieler anbietet, so dass
+    <li>zuerst die <b>Kooperation</b> mit dem Gegenspieler anbietet, so dass
       beide
       Aussichten auf 1 Jahr im Gefängnis haben</li>
-    <li>den anderen <b>"bestraft"</b> , der gesteht und damit das Leugnen von
+    <li>den anderen <b>"bestraft"</b>, der gesteht und damit das Leugnen von
       Spieler A
-      auszunutzt. A "bestraft" den Gegenspieler, indem er in der nächsten
+      ausnutzt. A "bestraft" den Gegenspieler, indem er in der nächsten
       Runde
       auch gesteht</li>
     <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn
@@ -757,7 +810,7 @@
       B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
       wieder Aussichten auf 1 Jahr im Gefängnis</li>
   </ul>
-<br>
+  <br>
   <div>
     Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat tritt auf,
     wenn
@@ -804,31 +857,45 @@
 
 
   <p>
-    Anders als beim klassischen Prisonners Dilemma, ist es beim Prisonners 
-    Dilemma mit "unendlicher" Rundenanzahl nicht mehr so einfach das 
-    Nash-Equilibrium zu bestimmen. Dieses besteht nun nämlich nicht mehr 
-    aus reinen Strategien (also entweder die Strategie immer zu gestehen, 
-    oder immer zu leugnen), sondern besteht aus gemischten Strategien. 
+    Anders als beim klassischen Prisoners Dilemma, ist es beim Prisoners
+    Dilemma mit "unendlicher" Rundenanzahl nicht mehr so einfach das
+    Nash-Equilibrium zu bestimmen. Dieses besteht nun nämlich nicht mehr
+    aus reinen Strategien (also entweder die Strategie immer zu gestehen,
+    oder immer zu leugnen), sondern besteht aus gemischten Strategien.
     Diese ist das Gegenteil einer reinen Strategie und besteht darin
-    teilweise zu leugnen und teilweise zu gestehen. Wie man unter solchen 
-    Bedingungen das Nash-Equilibrium berechnet erläutern wir im nächsten Kapitel.
+    teilweise zu leugnen und teilweise zu gestehen. Wie man unter solchen
+    Bedingungen das Nash-Equilibrium berechnet erläutern wir im nächsten
+    Kapitel.
   </p>
 
   <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
 
   <p>
-    Zum Abschluss betrachten wir erneut das wichtige Konzept des
-    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien.
-    Bei
-    einer <b>reinen Strategie</b> spielt der Spieler immer den gleichen
-    Spielzug. Bei einer <b>gemischten Strategie</b> wählt der Spieler mit
-    bestimmten Wahrscheinlichkeiten
-    $p_i$ aus den möglichen Spielzügen $s_i$ aus.
-    Wir erinnern uns, dass ein <b>Nash-Equilibrium</b> dann vorliegt, wenn es
+    Zum Abschluss betrachten wir die erneut das wichtige Konzept des
+    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien. Wir
+    nennen die verschiedenen Spielzüge, die ein Spieler in jeder Runde zur
+    Verfügung
+    hat $s_1, ..., s_n$. Bei einer <b>reinen Strategie</b> spielt der Spieler
+    immer den
+    gleichen
+    Spielzug.
+    Eine <b>gemischte Strategie</b> besteht aus einer
+    Wahrscheinlichkeitsverteilung
+    über
+    die $s_i$. Jedem $s_i$ wird also eine Wahrscheinlichkeit $p_i$ so
+    zugeordnet, dass $\sum_{i=0}^n p_i = 1$ gilt.
+    In
+    jeder
+    Runde wählt der Spieler dann mit den Wahrscheinlichkeiten $p_i$ zufällig
+    einen der
+    Spielzüge $s_i$ aus.
+    Wir erinnern uns, dass eine <b>Nash-Equilibrium</b> dann vorliegt, wenn es
     sich für
-    keinen der Spieler lohnt, seine Strategie zu ändern. Es lässt sich der
-    folgende
-    Satz zeigen:
+    keinen der Spieler lohnt, seine Strategie zu ändern. Bei gemischten
+    Strategien
+    zählt bereits ein Anpassen der Wahrscheinlichkeitsverteilung als Änderung.
+    Es
+    lässt sich der folgende Satz zeigen:
 
   </p>
 
@@ -1019,7 +1086,13 @@
     Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von
     Rock,
     Paper, Scissors symmetrisch ist. Interessanter wird das ganze bei einer
-    asymmetrischen Pay-Off- Matrix. Dafür betrachten wir als weiteres Spiel
+    asymmetrischen Pay-Off- Matrix.
+  </p>
+
+  <h3>Matching Pennies</h3>
+
+  <p>
+    Wir betrachten als weiteres Spiel
     Matching
     Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie
     Heads
@@ -1034,7 +1107,6 @@
     ist die Wahrscheinlichkeit dass Spieler A Heads spielt...).
   </p>
 
-  <h3>Matching Pennies</h3>
 
   <div class="table-container">
     <table>
@@ -1218,7 +1290,7 @@
     <li>
       Das Nash-Equilibrium, also die Kombination aus Strategien bei der es sich
       für keinen Spieler lohnt seine Strategie zu ändern ohne, dass der andere
-      dies ebenfalls tut, liegt beim klassischen Prisonners Dilemma, bei der
+      dies ebenfalls tut, liegt beim klassischen Prisoners Dilemma, bei der
       Kombination (gestehen, gestehen). Durch eine undefinierte Anzahl an
       Wiederholungen des Spiels ziehen Spieler dennoch in Betracht zu leugnen,
       um ihren Gewinn zu optimieren.
@@ -1226,7 +1298,7 @@
     <li>
       Bei einfachen Spielen, bei denen beide Spieler entscheiden welchen
       Spielzug sie spielen, ohne zu wissen was der andere spielt, gibt es mit
-      gemischten Strategien immer ein Nash-Equilibrium
+      gemischten Strategien immer ein Nash-Equilibrium.
     </li>
   </ul>
 
@@ -1290,7 +1362,7 @@
     - besser kontextualisieren 
     - Done: Summe geometrische Reihe erklären 
     - Done: Erwartungswerte gleich -> Beweis aufschreiben 
-    - sagen, dass wir den nutzen wert bei mehreren Runden prisonners Dilemma aufaddieren können
+    - sagen, dass wir den nutzen wert bei mehreren Runden prisoners Dilemma aufaddieren können
     - Sollen die Studikinder nicht selber auf den Minimax Algo kommen??
     - Done: Beschreibungen, der Abbildungen (PayOff Matrizen)
 -->
