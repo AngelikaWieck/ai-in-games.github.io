@@ -53,7 +53,7 @@
 
   <p>
     Jeden Tag fällen wir Entscheidungen. Mal mit kleinen Konsequenzen, mal mit
-    vielen Konsequenzen. Mal mit Konsequenzen nur für uns selber, mal mit
+    großen Konsequenzen. Mal mit Konsequenzen nur für uns selber, mal mit
     Konsequenzen für sehr viele Menschen. Mal denken wir wenig nach dabei, mal
     denken wir sehr genau nach. Aber wie können wir die besten Entscheidungen
     treffen? Die wirklich beste Entscheidung können wir natürlich nur treffen,
@@ -76,25 +76,28 @@
     Zero-sum-games
   </h3>
   <p>
-    Eine besondere Art von Spielen sind <b>Zero-sum-games</b>. Dies sind Spiele,
+    Eine besondere Art von Spielen sind <a
+      href="https://en.wikipedia.org/wiki/Zero-sum_game"
+      target="_blank"><b>Zero-sum-games</b></a>.
+    Dies sind Spiele,
     bei denen
     die Summe des Ergebnisses am Ende bei jedem Spielausgang konstant ist. Wenn
     zum
     Beispiel zwei Spieler Alice und Bob Schach spielen, kann entweder Alice
-    gewinnen, dann kriegt Alice 1 Punkt und Bob 0, oder Bob gewinnt, dass kriegt
+    gewinnen, dann kriegt Alice 1 Punkt und Bob 0, oder Bob gewinnt, dann kriegt
     Alice 0 Punkte und Bob 1, oder es geht unentschieden aus, dann kriegt sowohl
     Alice als auch Bob $\frac{1}{2}$ Punkt. Insgesamt wird also immer genau 1
     Punkt
     verteilt.
     Wenn man sich nun noch vorstellt, dass beide Spieler $\frac{1}{2}$ Punkt als
     Einsatz
-    gezahlt haben und die Einsätze zum Ergebnis addiert, kommt man immer aus 0,
-    daher der Name zero-sum-games. Ein etwas intuitiverer Name wäre vielleicht
-    constant-sum- games.
+    gezahlt haben und die Einsätze zum Ergebnis addiert, kommt man immer auf 0,
+    daher der Name Zero-sum-games. Ein etwas intuitiverer Name wäre vielleicht
+    constant-sum-games.
   </p>
   <h3>Minimax</h3>
   <p>
-    Für ein zwei Spieler zero-sum-game wollen wir nun einen Algorithmus
+    Für ein zwei Spieler Zero-sum-game wollen wir nun einen Algorithmus
     entwickeln,
     der das Ergebnis berechnet, wenn beide Spieler optimal spielen. Dafür
     benötigen
@@ -108,25 +111,30 @@
     Endzustände, die das Spiel beenden und haben einen Ergebniswert, der angibt
     wie
     viele Punkte der erste Spieler an der Reihe bekommt (dieser eine Wert reicht
-    aus, da durch die zero-sum-game Bedingung auch die Punktzahl für den anderen
+    aus, da durch die Zero-sum-game Bedingung auch die Punktzahl für den anderen
     Spieler abgeleitet werden kann). Den ersten Spieler nennen wir deshalb
     𝑀𝐴𝑋
     (er probiert den Ergebniswert zu maximieren) und den zweiten Spieler nennen
     wir
     𝑀𝐼𝑁, da er versucht den Ergebniswert zu minimieren. Als Eingabe erhält
     unser
-    Algorithmus als einen solchen Baum und als Ausgabe wird der Ergebniswert
+    Algorithmus also einen solchen Baum und als Ausgabe wird der Ergebniswert
     (Punktzahl vom ersten Spieler) produziert. Nach den beiden Spielern 𝑀𝐼𝑁
     und
     𝑀𝐴𝑋 nennen wir unseren Algorithmus 𝑀𝑖𝑛𝑖𝑚𝑎𝑥.
   </p>
   <br>
   <p>
-    Der Algorithmus basiert auf einer Tiefensuche. Für jeden Knoten, beginnend
+    Der Algorithmus basiert auf einer <a
+      href="https://de.wikipedia.org/wiki/Tiefensuche"
+      target="_blank"><b>Tiefensuche</b></a>.
+    Für
+    jeden Knoten,
+    beginnend
     bei
     der Wurzel, wird der Ergebniswert basierend auf dem Spieler an der Reihe und
     den
-    Ergebniswerten der Kindknoten Basierend auf der folgenden Funktion
+    Ergebniswerten der Kindknoten basierend auf der folgenden Funktion
     berechnet:
 
     $$ minimax(s) =
@@ -139,32 +147,37 @@
     Schon an der Definition der Funktion ist zu erkennen, dass dieser
     Algorithmus
     sehr leicht rekursiv zu implementieren ist. Alternativ kann mit Hilfe der
-    topologischen Sortierung auch Dynamische Programmierung auf dem Spielgraphen
+    topologischen Sortierung auch <a
+      href="https://de.wikipedia.org/wiki/Dynamische_Programmierung"
+      target="_blank">Dynamische Programmierung</a> auf dem Spielgraphen
     implementiert werden.
   </p>
-
-  <!-- TODO: Baum Beispiel -->
 
   <details class="aufgabe">
     <summary>Aufgabe 1</summary>
     <div class="content">
 
       <p>
-        Hast du den Algorithmus verstanden? Stell dir folgendes Spiel vor: MIN
-        hat 3
-        Taschen mit je drei Geldbündeln verschiedener Werte. MAX bekommt eins
+        Hast du den Algorithmus verstanden? Stell dir folgendes Spiel vor:
+        𝑀𝐼𝑁
+        hat drei
+        Taschen mit je drei Geldbündeln verschiedener Werte. 𝑀𝐴𝑋 bekommt eins
         dieser
-        Geldbündel von MIN. Dafür darf MAX eine der drei Taschen auswählen und
+        Geldbündel von 𝑀𝐼𝑁. Dafür darf 𝑀𝐴𝑋 eine der drei Taschen auswählen
+        und
         dann darf
-        MIN aus den drei Geldbündeln aus dieser Tasche auswählen, welches MAX
+        𝑀𝐼𝑁 aus den drei Geldbündeln aus dieser Tasche auswählen, welches
+        𝑀𝐴𝑋
         bekommt.
         Beide Spieler wissen welche Geldbündel in welchen Taschen sind und wie
         viel die
-        verschiedenen Geldbündel wert sind. Logischer Weise möchte MAX
+        verschiedenen Geldbündel wert sind. Logischer Weise möchte 𝑀𝐴𝑋
         maximieren wie
-        viel Geld er bekommt, und MIN möchte minimieren wie viel MAX bekommt.
+        viel Geld er bekommt, und 𝑀𝐼𝑁 möchte minimieren wie viel 𝑀𝐴𝑋
+        bekommt.
         Trage im
-        Spielbaum die Minimax Werte von jedem Knoten ein. Die grünen Felder
+        Spielbaum die 𝑀𝑖𝑛𝑖𝑚𝑎𝑥 Werte von jedem Knoten ein. Die grünen
+        Felder
         stellen Entscheidungen
         von <span class="green">𝑀𝐴𝑋</span> dar, die roten die von <span
           class="red">𝑀𝐼𝑁</span>. Die Blattknoten
@@ -249,7 +262,7 @@
     Hier
     gibt es bei einem durchschnittlichen Spiel ca. 100 Runden mit
     durchschnittlich
-    ca. 35 möglichen Spielzügen. Es kommen also $35^{100} ≈ 10^{154}$ Knoten im
+    ca. 35 möglichen Spielzügen. Es gibt also $35^{100} ≈ 10^{154}$ Knoten im
     Spielbaum.
     Hier kann, wenn dynamische Programmierung verwendet wird, noch ein wenig
     optimiert werden, indem gleiche Spielzustände, die über verschiedene
@@ -260,7 +273,7 @@
     <br>
     <br>
 
-    Auch mit Optimierung, können von einer KI, die zeitbeschränkt den besten Zug
+    Auch mit Optimierung können von einer KI, die zeitbeschränkt den besten Zug
     bestimmen soll, nicht alle möglichen Spielzustände evaluiert werden.
     Stattdessen
     wird der Spielbaum bis zu einer festgelegten Tiefe generiert. Der Nutzen der
@@ -272,13 +285,15 @@
 
     <h3>Alpha-Beta-Pruning</h3>
 
-
-    Abhilfe schaffen kann da eine weitere Optimierung, das Alpha-Beta-Pruning.
-    Dafür schauen wir uns unser Beispiel von Aufgabe 1 nochmals an. Diesmal
-    wollen
-    wir allerdings genauer überlegen, was wir über den Wert eines Knotens
-    wissen,
-    während seine Kindknoten ausgewertet werden.
+    <p>
+      Abhilfe schaffen kann da eine weitere
+      Optimierung: das <b>Alpha-Beta-Pruning</b>.
+      Dafür schauen wir uns unser Beispiel von Aufgabe 1 nochmals an. Diesmal
+      wollen
+      wir allerdings genauer überlegen, was wir über den Wert eines Knotens
+      wissen,
+      während seine Kindknoten ausgewertet werden.
+    </p>
   </p>
 
   <div class="slides">
@@ -286,14 +301,14 @@
       <div class="slide-content">
         <img src="ab1.png" alt="Abbildung 1 des prunings">
         <p>
-          Noch nicht betrachtete Teile des Baums sind in ausgegraut. Für jeden
+          Noch nicht betrachtete Teile des Baums sind ausgegraut. Für jeden
           Knoten wird
           sich gemerkt, wie groß sein Wert maximal und minimal sein kann. Diese
           Werte
           werden in den Intervallklammern dargestellt. Da Knoten E einen Wert
           von
           9 hat
-          und Knoten B ein MIN- Knoten ist, wissen wir, dass der Wert von B
+          und Knoten B ein 𝑀𝐼𝑁-Knoten ist, wissen wir, dass der Wert von B
           maximal 9 sein
           wird.
         </p>
@@ -315,14 +330,14 @@
         <p>
           Nun kommt der letzte Kindknoten von B hinzu. Dieser hat einen Wert von
           7. Da B
-          ein MIN- Knoten ist, wird 7 gegenüber der vorherigen oberen Grenze 9
+          ein 𝑀𝐼𝑁-Knoten ist, wird 7 gegenüber der vorherigen oberen Grenze 9
           bevorzugt.
           Da außerdem kein weiterer Kindknoten dazukommt, steht die 7 nun auch
           als
           untere
           Grenze für Knoten B fest. Damit ist dann auch die untere Grenze von
           Knoten A
-          klar 7, da A ein MAX-Knoten ist und keine kleineren Werte als 7
+          klar 7, da A ein 𝑀𝐴𝑋-Knoten ist und keine kleineren Werte als 7
           gewählt
           werden
           würden.
@@ -335,7 +350,7 @@
         <p>
           Als nächstes wird H betrachtet. H hat einen Wert von 4, also gilt für
           den
-          darüber liegenden MIN-Knoten C die obere Grenze von 4. Da A bereits
+          darüber liegenden 𝑀𝐼𝑁-Knoten C die obere Grenze von 4. Da A bereits
           eine
           untere
           Grenze von 7 hat, ist C damit unabhängig von I und J für A nicht mehr
@@ -352,7 +367,8 @@
         <p>
           Nun wird K betrachtet. K hat einen Wert von 9. Also hat der darüber
           liegende
-          MIN-Knoten D 9 als obere Grenze. 9 wäre für A aber interessant, da 9
+          𝑀𝐼𝑁-Knoten D 9 als obere Grenze. 9 wäre für A aber interessant, da
+          9
           größer als
           7 ist. Also müssen weitere Kinder von D betrachtet werden. Da nun für
           alle
@@ -383,7 +399,7 @@
   </div>
   <br>
   <p>
-    Alpha-Beta-Pruning ist also prinzipiell immer noch 𝑀𝑖𝑛𝑖𝑚𝑎𝑥,
+    <i>Alpha-Beta-Pruning</i> ist also prinzipiell immer noch 𝑀𝑖𝑛𝑖𝑚𝑎𝑥,
     allerdings
     werden zusätzlich zwei Variablen 𝛼 und 𝛽 verwendet, um die obere und
     untere
@@ -439,7 +455,7 @@
     <br>
     <br>
     <p>
-      Mit einer guten Heuristik, wie das Beispiel vom Schach, kann die Anzahl
+      Mit einer guten Heuristik, wie dem Beispiel vom Schach, kann die Anzahl
       der
       Spielzüge die pro Knoten ausgewertet werden müssen von 𝑠 auf ca.
       $\sqrt{s}$
@@ -499,7 +515,7 @@
       </p>
       Rechts befindet sich die Pay-Off-Matrix, die den Nutzen der jeweiligen
       <b>Strategie</b>
-      (schweigen, oder gestehen) enthält. Der Nutzen entspricht den Jahren, die
+      (leugnen, oder gestehen) enthält. Der Nutzen entspricht den Jahren, die
       ein Gefangener im Gefängnis absitzen muss.
     </div>
     <div class="table-container">
@@ -534,32 +550,50 @@
       Wie würdest du handeln? Würdest du leugnen, oder gestehen?
     </div>
   </details>
+  <details class="aufgabe">
+    <summary>Lösung der Aufgabe 3</summary>
+    <div class="content">
+      Ein rationaler Spieler, genannt Agent, würde gestehen. Um dies zu
+      erläutern schauen wir uns die
+      optimale Strategie von Spieler B an. Wenn A gesteht, ist es für Spieler B
+      besser zu gestehen, da er dann frei kommt, wohingegen er, wenn er leugnen
+      würde 1 Jahr lang ins Gefängnis müsste. Wenn A leugnet, ist es für Spieler
+      B ebenfalls besser zu gestehen, weil er dann nur 5 Jahre, anstatt 10 Jahre
+      ins Gefängnis muss. Da dies eine vollständige Fallunterscheidung ist, ist
+      es für Spieler B immer besser zu gestehen.
+    </div>
+  </details>
+  <br>
+  <p>Hier noch ein paar weitere Begriffe:</p>
 
   <p>
     Eine <b>dominante Strategie</b> ist eine Strategie, die unter allen
-    möglichen Strategien (hier leugnen, oder gestehen) den höchsten Nutzen
-    bietet, unabhängig davon, was die anderen Akteure tun.
+    möglichen Strategien den höchsten Nutzen
+    bietet, unabhängig davon, was die anderen Akteure tun. Dementsprechend ist
+    die dominante Strategie beim Prisoners Dilemma zu gestehen.
   </p>
 
   <p>
-    Ein <b>Nash-Equilibrium</b> ist eine Kombination aus Strategien, wobei
+    Ein <a href="https://de.wikipedia.org/wiki/Nash-Gleichgewicht"
+      target="_blank"><b>Nash-Equilibrium</b></a> ist eine Kombination aus
+    Strategien, wobei
     jeder Spieler genau eine Strategie wählt, von der aus es für keinen
     Spieler sinnvoll ist, von der gewählten Strategie abzuweichen.
   </p>
   <p>
     Das Nash-Equilibrium besteht beim Prisoners Dilemma in der Kombination aus
-    Strategien, wo beide gestehen.
+    Strategien, bei der beide gestehen.
   </p>
   <p>
     Das Dilemma besteht darin, dass der aufaddierte Nutzen der beiden Spieler
-    im Nash-Equilibrium schlechter ist, als wenn beide leugnen.
+    im Nash-Equilibrium (-10) schlechter ist, als wenn beide leugnen (-2).
   </p>
 
-  <h3>Alltagsbeispiele:</h3>
+  <h3>Alltagsbeispiele</h3>
   <p>
     Das Prisoners Dilemma tritt im Alltag in vielen Situationen, fern von
     Gefängnissen auf. Schauen wir uns das Beispiel von Werbung an. Stellen wir
-    uns also zwei Unternehmen vor, die beide gleich gute Waschmittel verkaufen
+    uns also zwei Unternehmen vor, die beide gleich gutes Waschmittel verkaufen
     möchten.
     Wenn beide Unternehmen keine Werbung machen, haben beide Unternehmen keine
     Ausgaben für Werbung und wir können davon ausgehen, dass ungefähr 50% der
@@ -582,7 +616,9 @@
     <li>Nationen, die Atomwaffen lagern</li>
     <li>Athleten, die Drogen zur Leistungsverbesserung nehmen</li>
     <li>Überfischung </li>
-    <li>...</li>
+    <li><a
+        href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma#Real-life_examples"
+        target="_blank">Weitere Beispiele</a></li>
   </ul>
 
   <br>
@@ -598,7 +634,7 @@
   <details class="aufgabe">
     <summary>Aufgabe 4</summary>
     <div class="content">
-      Denke dir einen Beweis dafür aus, dass zwei rationale Agenten
+      Beweise, dass zwei rationale Agenten
       weiterhin in jeder Runde gestehen werden.
     </div>
   </details>
@@ -609,24 +645,28 @@
       <p>
         <!-- Ausklappbar -->
         <!-- Noch mal drüber nachdenken, bezüglich der gewinnen und siegen Geschichte -->
-        Lösung: Den Beweis kann man sich wie eine Induktion vorstellen. <br />
-        Induktionsanfang: Am 100. Tag hat die Entscheidung der beiden Spieler
-        keinen Einfluss auf weitere Spieler. Ein rationaler Agent würde nun
+        Lösung: Der Beweis funktioniert per <a
+          href="https://de.wikipedia.org/wiki/Rückwärtsinduktion"
+          target="_blank">Rückwärtsinduktion</a>.
+        <br />
+        Am 100. Tag hat die Entscheidung der beiden Spieler
+        keinen Einfluss auf weitere Spielrunden. Ein rationaler Agent würde nun
         also
         lediglich versuchen den für sich größten Nutzen rauszuziehen, indem er
-        gesteht. Gestehen hat größten Nutzen, weil ...
+        gesteht. Wir befinden uns schließlich in der selben Situation, wie wenn
+        das Prisoners Dilemma nur ein Mal gespielt wird, also wie im klassischen
+        Prisoners Dilemma.
         <br />
         Nun gilt aber für den 99. Tag, dass dieser ebenfalls keine Auswirkung
-        auf
-        den 100. Tag hat, dementsprechend kann nun wieder jeder Agent so
-        handeln,
-        dass er das Optimum für diesen Tag rausholen kann... Noch
-        verbessern...
+        auf weitere Tage hat, da am 100. Tag schon klar ist, wie wir handeln.
+        Somit wird jeder Agent auch am 99. Tag optimal für sich handeln, indem
+        er gesteht.
+        <br>
+        Das Verfahren setzt sich bis zum 1. Tag fort und wir kommen zu dem
+        Ergebnis, dass ratinale Spieler immer gestehen würden.
       </p>
     </div>
   </details>
-
-  <!-- TODO: Agent einführen -->
 
   <h3>Prisoners Dilemma mit einer "unendlichen" Rundenanzahl</h3>
 
@@ -643,13 +683,16 @@
   </p>
   <p>
     Das kommt darauf an, was man optimieren möchte. Man unterscheidet zwischen
-    <b>Siegen</b> und <b>Sewinnen</b>. <br />
-    Beim Siegen geht es einem Spieler darum kürzer, oder gleich lang ins
+    <b>Siegen</b> und <b>Gewinnen</b>. <br />
+    Beim Siegen geht es einem Spieler darum kürzer als, oder gleich lang wie der
+    Gegenspieler ins
     Gefängnis gehen zu
-    müssen, als der Gegenspieler. <br />
+    müssen. <br />
     Beim Gewinnen geht es einem Spieler darum möglichst kurz ins Gefängnis zu
     müssen.
   </p>
+  <br>
+  <p>Nun schauen wir uns ein paar dieser Strategien an:</p>
 
   <h4>Sieger-Strategie - "immer gestehen"</h4>
 
@@ -658,8 +701,9 @@
   Um das zu beweisen, genügt es sich den Spieler B, also die rechte Spalte
   anzuschauen.
   Wenn Spieler B gesteht, und A leugnet, muss B kürzer ins Gefängnis und wenn
-  beide gestehen müssen beide gleich lang ins Gefängnis. Somit siegt Spieler
-  B.
+  beide gestehen müssen beide gleich lang ins Gefängnis. Somit muss muss Spieler
+  B, wenn er immer gesteht insgesamt entweder gleich lang, oder kürzer als
+  Spieler A ins Gefängnis. Also siegt Spieler B.
 
   <div class="table-container">
     <table>
@@ -692,7 +736,8 @@
 
   <h4>Gewinnoptimierungs-Strategie - "Perpetual Punishment"</h4>
   <p>
-    "Ich leugne solange, bis der andere gesteht. Ab dann gestehe ich immer."
+    Bei dieser Strategie denkt ein Spieler folgendermaßen: "Ich leugne
+    solange, bis der andere gesteht. Ab dann gestehe ich immer."
   </p>
 
   <div class="table-container center">
@@ -710,7 +755,7 @@
       </tr>
       <tr>
         <td>
-          Tit for Tat
+          Perpetual Punishment
         </td>
         <td>leugnen <br> -1 </td>
         <td>leugnen <br> -1 </td>
@@ -730,18 +775,20 @@
     eine
     weitere Runde gespielt wird) für jeden Spieler bei:
 
+    <p>
 
-    $$
-    \begin{align}
-    & \sum_{i=0}^\infty (0.99)^i \cdot (-1) && \\
-    = & (-1) \cdot \sum_{i=0}^\infty (0.99)^i && | \mbox{Konstante
-    ausklammern}
-    \\
-    = & (-1) \cdot \frac{1}{1-0.99} && | \mbox{Summe geometrische Reihe}
-    \\
-    = & -100
-    \end{align}
-    $$
+      $$
+      \begin{align}
+      & \sum_{i=0}^\infty (0.99)^i \cdot (-1) && \\
+      = & (-1) \cdot \sum_{i=0}^\infty (0.99)^i && | \mbox{Konstante
+      ausklammern}
+      \\
+      = & (-1) \cdot \frac{1}{1-0.99} && | \mbox{Summe geometrische Reihe}
+      \\
+      = & -100
+      \end{align}
+      $$
+    </p>
 
 
     Wenn Spieler A schon bei der ersten Iteration gesteht, dann liegt der
@@ -749,7 +796,7 @@
     spielt bei:
     $$-10 + \sum_{i=1}^\infty (0.99)^i \cdot (-5) = -505$$
 
-    Da diese Strategie nur in bestimmten Fällen sehr gut Erwartungswerte hat
+    Da diese Strategie nur in bestimmten Fällen sehr gute Erwartungswerte hat
     und
     in anderen Fällen sehr schlechte Erwartungswerte hat, ist sie nur eine
     <b>mittelmäßige</b> Gewinnoptimierungs-Strategie.
@@ -758,611 +805,605 @@
 
   <h4>Gewinnoptimierungs-Strategie - "Tit for Tat"</h4>
   <p>
-    "Wie du mir, so ich dir."
+
   </p>
-
-  Ein Spieler, der mit der Strategie "Tit for Tat" spielt, leugnet immer in
-  der
-  ersten Runde und kopiert in den nächsten Runden immer das Verhalten des
-  anderen Spielers aus der Runde davor.
-
-  <div class="table-container center">
-    <table>
-      <tr>
-        <td>
-          Random
-        </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -1 </td>
-        <td>gestehen <br> 0 </td>
-        <td>gestehen <br> -5 </td>
-        <td>leugnen <br> -10 </td>
-        <td>leugnen <br> -1 </td>
-      </tr>
-      <tr>
-        <td>
-          Tit for Tat
-        </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -10 </td>
-        <td>gestehen <br> -5 </td>
-        <td>gestehen <br> 0 </td>
-        <td>leugnen <br> -1 </td>
-      </tr>
-    </table>
-    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie </i> </p>
-  </div>
-
-  Die Strategie zeichnet sich dadurch aus, dass Spieler A, der diese
-  Strategie anwendet:
-  <ul class="ul">
-    <li>zuerst die <b>Kooperation</b> mit dem Gegenspieler anbietet, so dass
-      beide
-      Aussichten auf 1 Jahr im Gefängnis haben</li>
-    <li>den anderen <b>"bestraft"</b>, der gesteht und damit das Leugnen von
-      Spieler A
-      ausnutzt. A "bestraft" den Gegenspieler, indem er in der nächsten
-      Runde
-      auch gesteht</li>
-    <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn
-      Spieler
-      B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
-      wieder Aussichten auf 1 Jahr im Gefängnis</li>
-  </ul>
-  <br>
-  <div>
-    Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat tritt auf,
-    wenn
-    beispielsweise beide Spieler "Tit for Tat" spielen und eine <b>Störung</b>
-    auftritt. Beispielsweise gesteht ein Spieler doch, weil die
-    Polizei ihn so sehr unter Druck gesetzt hat. In diesem Fall entsteht ein
-    <b>Echo</b>, was sich dadurch auszeichnet, dass Spieler A und B
-    abwechselnd
-    leugnen und gestehen. Der Erwartungswert verschlechtert sich dann
-    drastisch.
-  </div>
-
-  <div class="table-container center">
-    <table>
-      <tr>
-        <td>
-          Tit for Tat
-        </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -1 </td>
-        <td class="red">gestehen <br> 0 </td>
-        <td>leugnen <br> -10 </td>
-        <td class="red">gestehen <br> 0 </td>
-        <td>leugnen <br> -10 </td>
-      </tr>
-      <tr>
-        <td>
-          Tit for Tat
-        </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -1 </td>
-        <td>leugnen <br> -10 </td>
-        <td class="red">gestehen <br> 0 </td>
-        <td>leugnen <br> -10 </td>
-        <td class="red">gestehen <br> 0 </td>
-      </tr>
-    </table>
-    <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie bei einer
-        Störung
-      </i> </p>
-  </div>
-
-  <!-- TODO: hier einen Link für weitere Strategien hinklatschen -->
-
 
   <p>
-    Anders als beim klassischen Prisoners Dilemma, ist es beim Prisoners
-    Dilemma mit "unendlicher" Rundenanzahl nicht mehr so einfach das
-    Nash-Equilibrium zu bestimmen. Dieses besteht nun nämlich nicht mehr
-    aus reinen Strategien (also entweder die Strategie immer zu gestehen,
-    oder immer zu leugnen), sondern besteht aus gemischten Strategien.
-    Diese ist das Gegenteil einer reinen Strategie und besteht darin
-    teilweise zu leugnen und teilweise zu gestehen. Wie man unter solchen
-    Bedingungen das Nash-Equilibrium berechnet erläutern wir im nächsten
-    Kapitel.
-  </p>
+    Getreu der Aussage: "Wie du mir, so ich dir.", leugnet ein Spieler, der mit
+    der Strategie "<a href="https://de.wikipedia.org/wiki/Tit_for_Tat"
+      target="_blank">Tit for Tat</a>" spielt immer in der
+    ersten Runde und kopiert in den nächsten Runden immer das Verhalten des
+    anderen Spielers aus der Runde davor.
 
-  <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
-
-  <p>
-    Zum Abschluss betrachten wir die erneut das wichtige Konzept des
-    Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien. Wir
-    nennen die verschiedenen Spielzüge, die ein Spieler in jeder Runde zur
-    Verfügung
-    hat $s_1, ..., s_n$. Bei einer <b>reinen Strategie</b> spielt der Spieler
-    immer den
-    gleichen
-    Spielzug.
-    Eine <b>gemischte Strategie</b> besteht aus einer
-    Wahrscheinlichkeitsverteilung
-    über
-    die $s_i$. Jedem $s_i$ wird also eine Wahrscheinlichkeit $p_i$ so
-    zugeordnet, dass $\sum_{i=0}^n p_i = 1$ gilt.
-    In
-    jeder
-    Runde wählt der Spieler dann mit den Wahrscheinlichkeiten $p_i$ zufällig
-    einen der
-    Spielzüge $s_i$ aus.
-    Wir erinnern uns, dass eine <b>Nash-Equilibrium</b> dann vorliegt, wenn es
-    sich für
-    keinen der Spieler lohnt, seine Strategie zu ändern. Bei gemischten
-    Strategien
-    zählt bereits ein Anpassen der Wahrscheinlichkeitsverteilung als Änderung.
-    Es
-    lässt sich der folgende Satz zeigen:
-
-  </p>
-
-  <br>
-
-  <p>
-    <b>Satz von Nash</b>: Erlaubt man gemischte Strategien, so gibt es in
-    jedem
-    zero-sum-game ein Nash-Equilibrium.
-  </p>
-
-  <br>
-
-  <p>
-    Außerdem gilt der folgende Satz:
-  </p>
-
-  <br>
-
-  <p>
-    <b>Satz der gleichen Erwartungswerte</b>: In einem Nash-Equilibrium sind die
-    Erwartungswerte für die verschiedenen Spielzüge die ein Spieler in seiner
-    gemischten Strategie hat gleich.
-  </p>
-  <br>
-  <p>
-    <b>Beweis</b>: Wir führen den Beweis per Widerspruch. Seien die Strategien
-    von
-    Alice
-    und Bob so, dass sie sich in einem Nash-Equilibrium befinden. Nehmen wir
-    nun
-    an,
-    dass die Erwartungswerte der Spielzüge die Alice in ihrer Strategie hat
-    nicht
-    gleich sind. Dann gibt es in der Strategie von Alice zwei Spielzüge $s_1,
-    s_2$
-    so,
-    dass der Erwartungswert für Alice, wenn sie $s_1$ spielt, größer ist als
-    der
-    Erwartungswert, wenn sie $s_2$ spielt. Da Alice aber rational spielt,
-    würde
-    sie
-    dann aber statt $s_2$ immer $s_1$ spielen. Sie würde also ihre Strategie
-    anpassen,
-    und damit ihren Erwartungswert steigern. Ein Widerspruch zur Annahme, dass
-    sich
-    Alice und Bob in einem Nash-Equilibrium befinden. Also kann unsere Annahme
-    nur
-    falsch sein. Die Erwartungswerte für die verschiedenen Spielzüge die ein
-    Spieler
-    in seiner gemischten Strategie hat müssen also gleich sein. $\blacksquare$
-
-  </p>
-
-  <h3>Rock, Paper, Scissors</h3>
-
-  <p>
-    Betrachten wir nun das allen bekannte Spiel Rock, Paper, Scissors.
-    Bekanntlich
-    besiegt Rock Scissors, Scissors Paper und Paper Rock.
-  </p>
-
-  <div class="table-container">
-    <table>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>$p_{BR}$</td>
-        <td>$p_{BP}$</td>
-        <td>$p_{BS}$</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>B: Rock</td>
-        <td>B: Paper</td>
-        <td>B: Scissors</td>
-      </tr>
-      <tr>
-        <td>$p_{AR}$</td>
-        <td>A: Rock</td>
-        <td>A: 0 | B: 0</td>
-        <td>A: -1 | B: 1</td>
-        <td>A: 1 | B: -1</td>
-      </tr>
-      <tr>
-        <td>$p_{AP}$</td>
-        <td>A: Paper</td>
-        <td>A: 1 | B: -1</td>
-        <td>A: 0 | B: 0</td>
-        <td>A: -1 | B: 1</td>
-      </tr>
-      <tr>
-        <td>$p_{AS}$</td>
-        <td>A: Scissors</td>
-        <td>A: -1 | B: 1</td>
-        <td>A: 1 | B: -1</td>
-        <td>A: 0 | B: 0</td>
-      </tr>
-    </table>
-    <p> <i>Abb: Pay-Off Matrix des Spiels Rock, Paper, Scissors
-      </i> </p>
-  </div>
-
-  <details class="aufgabe">
-    <summary>Aufgabe 5</summary>
-    <div class="content">
-      Warum gibt es bei Rock, Paper Scissors kein Nash-Equilibrium aus reinen
-      Strategien?
+    <div class="table-container center">
+      <table>
+        <tr>
+          <td>
+            Random
+          </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -1 </td>
+          <td>gestehen <br> 0 </td>
+          <td>gestehen <br> -5 </td>
+          <td>leugnen <br> -10 </td>
+          <td>leugnen <br> -1 </td>
+        </tr>
+        <tr>
+          <td>
+            Tit for Tat
+          </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -10 </td>
+          <td>gestehen <br> -5 </td>
+          <td>gestehen <br> 0 </td>
+          <td>leugnen <br> -1 </td>
+        </tr>
+      </table>
+      <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie </i> </p>
     </div>
-  </details>
-  <details class="aufgabe">
-    <summary>Lösung der Aufgabe 5</summary>
-    <div class="content">
-      Jede reine Strategie kann durch eine andere reine Strategie besiegt
-      werden.
-      Somit kann bei jeder Kombination aus reinen Strategien einer der Spieler
-      reagieren um sich zu verbessern.
+
+    Die Strategie zeichnet sich dadurch aus, dass Spieler A, der diese
+    Strategie anwendet:
+    <ul class="ul">
+      <li>zuerst die <b>Kooperation</b> mit dem Gegenspieler anbietet, so dass
+        beide
+        Aussichten auf 1 Jahr im Gefängnis haben</li>
+      <li>den anderen <b>"bestraft"</b>, der gesteht und damit das Leugnen von
+        Spieler A
+        ausnutzt. A "bestraft" den Gegenspieler, indem er in der nächsten
+        Runde
+        auch gesteht</li>
+      <li>sich mit dem anderen Spieler <b>"versöhnen"</b> kann. Denn wenn
+        Spieler
+        B wieder leugnet, dann leugnet auch Spieler A wieder und beide haben
+        wieder Aussichten auf 1 Jahr im Gefängnis</li>
+    </ul>
+    <br>
+    <div>
+      Der einzige Fall mit dem "Tit for Tat" Schwierigkeiten hat tritt auf,
+      wenn
+      beispielsweise beide Spieler "Tit for Tat" spielen und eine <i>Störung</i>
+      auftritt. Beispielsweise gesteht ein Spieler doch, weil die
+      Polizei ihn so sehr unter Druck gesetzt hat. In diesem Fall entsteht ein
+      <i>Echo</i>, was sich dadurch auszeichnet, dass Spieler A und B
+      abwechselnd
+      leugnen und gestehen. Der Erwartungswert verschlechtert sich dann
+      drastisch.
     </div>
-  </details>
 
-  <p>
-    Nach dem Satz von Nash muss es aber ein Nash-Equilibrium mit gemischten
-    Strategien geben. Dieses wollen wir nun berechnen. Dafür benennen wir die
-    Wahrscheinlichkeiten mit denen die beiden Spieler die verschiedenen
-    Spielzüge
-    wählen. Beispielsweise steht $p_{AR}$ für die Wahrscheinlichkeit, dass
-    Spieler A
-    Rock spielt und $p_{BS}$ dafür, dass Spieler B Scissors
-    spielt. Um diese Wahrscheinlichkeiten zu berechnen nutzen wir den Satz der
-    gleichen Erwartungswerte. Demnach gilt nämlich, dass $E_A[Rock]$ (der
-    Erwartungswert für Spieler A,
-    wenn er Rock spielt), $E_A[Paper]$ und $E_A[Scissors]$ gleich sind.
-  </p>
-  <br>
-  <p>Die Erwartungswerte für A können wir leicht mit den Ergebnissen von A und
-    den
-    Wahrscheinlichkeiten von B berechnen.</p>
-  <br>
-  <p>
-    $$
-    \begin{align}
-    E_A[Rock] &= 0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS}\\
-    E_A[Paper] &= 1\cdot p_{BR} + 0\cdot p_{BP} - 1\cdot p_{BS}\\
-    E_A[Scissors] &= -1\cdot p_{BR} + 1\cdot p_{BP} + 0\cdot p_{BS}
-    \end{align}
-    $$
-  </p>
-  <p>
-    Nun können wir $E_A[Rock]$ mit $E_A[Paper]$ und $E_A[Scissors]$
-    gleichsetzen:
-  </p>
-  <p>
-    $$
-    \begin{align}
-    0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= 1\cdot p_{BR} + 0\cdot
-    p_{BP} -
-    1\cdot p_{BS}\\
-    0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= -1\cdot p_{BR} + 1\cdot
-    p_{BP}
-    + 0\cdot p_{BS}
-    \end{align}
-    $$
-  </p>
-  <p>
-    Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BR}, p_{BP},
-    p_{BS}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
-    Gleichungssystem:
-  </p>
-  <p>
-    $$
-    \begin{align}
-    -1p_{BR} - 1p_{BP} + 2p_{BS} &= 0\\
-    1p_{BR} - 2p_{BP} + 1p_{BS} &= 0\\
-    1p_{BR} + 1p_{BP} + 1p_{BS} &= 1
-    \end{align}
-    $$
-  </p>
-  <p>
-    Aus diesem Gleichungssystem ergibt sich $p_{BR} = p_{BP} = p_{BS} =
-    \frac{1}{3}$. Äquivalent ergibt sich aus $E_B[Rock] = E_B[Paper] =
-    E_B[Scissors]$ für die Wahrscheinlichkeiten von A $p_{AR} = p_{AP} = p_{AS}
-    =
-    \frac{1}{3}$.
-  </p>
-  <br>
-  <p>
-    Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von
-    Rock,
-    Paper, Scissors symmetrisch ist. Interessanter wird das ganze bei einer
-    asymmetrischen Pay-Off- Matrix.
-  </p>
-
-  <h3>Matching Pennies</h3>
-
-  <p>
-    Wir betrachten als weiteres Spiel
-    Matching
-    Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie
-    Heads
-    oder Tails spielen (die Münze wird nicht geworfen, sondern jeder Spieler
-    entscheidet, mit welcher Seite nach oben er die Münze auf den Tisch legt).
-    Wenn
-    nun beide Spieler das gleiche spielen, dann gewinnt Spieler A und wenn sie
-    unterschiedlich spielen, dann gewinnt Spieler B. Die Wahrscheinlichkeiten
-    für
-    die einzelnen Spielzüge benennen wir äquivalent zum vorherigen Beispiel
-    ($p_{AH}$
-    ist die Wahrscheinlichkeit dass Spieler A Heads spielt...).
-  </p>
-
-
-  <div class="table-container">
-    <table>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>$p_{BH}$</td>
-        <td>$p_{BT}$</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>B: Heads</td>
-        <td>B: Tails</td>
-      </tr>
-      <tr>
-        <td>$p_{AH}$</td>
-        <td>A: Heads</td>
-        <td>A: 1 | B: -1</td>
-        <td>A: -1 | B: 1</td>
-      </tr>
-      <tr>
-        <td>$p_{AT}$</td>
-        <td>A: Tails</td>
-        <td>A: -1 | B: 1</td>
-        <td>A: 1 | B: -1</td>
-      </tr>
-    </table>
-    <p> <i>Abb: Pay-Off Matrix des Spiels Matching Pennies
-      </i> </p>
-  </div>
-
-  <details class="aufgabe">
-    <summary>Aufgabe 6</summary>
-    <div class="content">
-      Diese Pay-Off-Matrix ist nun wieder symmetrisch. Was sind die
-      Wahrscheinlichkeiten für die Strategien, die das Nash-Equilibrium
-      bilden?
+    <div class="table-container center">
+      <table>
+        <tr>
+          <td>
+            Tit for Tat
+          </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -1 </td>
+          <td class="red">gestehen <br> 0 </td>
+          <td>leugnen <br> -10 </td>
+          <td class="red">gestehen <br> 0 </td>
+          <td>leugnen <br> -10 </td>
+        </tr>
+        <tr>
+          <td>
+            Tit for Tat
+          </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -1 </td>
+          <td>leugnen <br> -10 </td>
+          <td class="red">gestehen <br> 0 </td>
+          <td>leugnen <br> -10 </td>
+          <td class="red">gestehen <br> 0 </td>
+        </tr>
+      </table>
+      <p> <i>Abb: Veranschaulichung der "Tit for Tat" Strategie bei einer
+          Störung
+        </i> </p>
     </div>
-  </details>
-  <details class="aufgabe">
-    <summary>Lösung der Aufgabe 6</summary>
-    <div class="content">
-      Äquivalent zum Rock, Paper, Scissors Beispiel ergibt sich $p_{AH} =
-      p_{AT}
-      = p_{BH} = p_{BT} = \frac{1}{2}$
-    </div>
-  </details>
 
-  <p>
-    Nun wollen wir aber die Pay-Off-Matrix ein wenig verändern. Spieler A
-    gewinnt
-    nun 100 Punkte, wenn er mit (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) gewinnt und weiterhin
-    nur
-    einen Punkt, wenn er mit (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) gewinnt.
+    <h2>3. Nash-Equilibrium bei gemischten Strategien</h2>
 
-  </p>
+    <p>
+      Zum Abschluss betrachten wir die erneut das wichtige Konzept des
+      Nash-Equilibriums. Diesmal aber in Verbindung mit gemischten Strategien.
+      Wir
+      nennen die verschiedenen Spielzüge, die ein Spieler in jeder Runde zur
+      Verfügung
+      hat $s_1, ..., s_n$. Bei einer <a
+        href="https://de.wikipedia.org/wiki/Reine_Strategie"
+        target="_blank"><b>reinen
+          Strategie</b></a> spielt der Spieler
+      immer den
+      gleichen
+      Spielzug.
+      Eine <a href="https://de.wikipedia.org/wiki/Gemischte_Strategie"
+        target="_blank"><b>gemischte Strategie</b></a> besteht aus einer
+      Wahrscheinlichkeitsverteilung
+      über
+      die $s_i$. Jedem $s_i$ wird also eine Wahrscheinlichkeit $p_i$ so
+      zugeordnet, dass $\sum_{i=0}^n p_i = 1$ gilt.
+      In
+      jeder
+      Runde wählt der Spieler dann mit den Wahrscheinlichkeiten $p_i$ zufällig
+      einen der
+      Spielzüge $s_i$ aus.
+      Wir erinnern uns, dass eine <b>Nash-Equilibrium</b> dann vorliegt, wenn es
+      sich für
+      keinen der Spieler lohnt, seine Strategie zu ändern. Bei gemischten
+      Strategien
+      zählt bereits ein Anpassen der Wahrscheinlichkeitsverteilung als Änderung.
+      Es
+      lässt sich der folgende Satz zeigen:
 
-  <div class="table-container">
-    <table>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>$p_{BH}$</td>
-        <td>$p_{BT}$</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>B: Heads</td>
-        <td>B: Tails</td>
-      </tr>
-      <tr>
-        <td>$p_{AH}$</td>
-        <td>A: Heads</td>
-        <td>A: 100 | B: -100</td>
-        <td>A: -1 | B: 1</td>
-      </tr>
-      <tr>
-        <td>$p_{AT}$</td>
-        <td>A: Tails</td>
-        <td>A: -1 | B: 1</td>
-        <td>A: 1 | B: -1</td>
-      </tr>
-    </table>
-    <p> <i>Abb: Pay-Off Matrix der Abwandlung des Spiels Matching Pennies
-      </i> </p>
-  </div>
+    </p>
 
-  <p>
-    Genau wie im Rock, Paper, Scissors Beispiel nutzen wir den Satz der gleichen
-    Erwartungswerte:
-  </p>
-  <p>
-    $$
-    \begin{align}
-    E_A[Heads] = E_A[Tails]
-    \end{align}
-    $$
-  </p>
-  <p>
-    Die Erwartungswerte für A können wir wieder mit den Ergebnissen von A und
-    den Wahrscheinlichkeiten von B berechnen.
-  </p>
-  <p>
-    $$
-    \begin{align}
-    E_A[Heads] &= 100\cdot p_{BH} - 1\cdot p_{BT}\\
-    E_A[Tails] &= -1\cdot p_{BH} + 1\cdot p_{BT}
-    \end{align}
-    $$
-  </p>
-  <p>
-    Nun können wir $E_A[Heads]$ mit $E_A[Tails]$ gleichsetzen:
-  </p>
-  <p>
-    $$
-    \begin{align}
-    100\cdot p_{BH} - 1\cdot p_{BT} = -1\cdot p_{BH} + 1\cdot p_{BT}
-    \end{align}
-    $$
-  </p>
-  <p>
-    Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BH}$ und
-    $p_{BT}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
-    Gleichungssystem:
-  </p>
-  <p>
-    $$
-    \begin{align}
-    101p_{BH} - 2p_{BT} &= 0\\
-    1p_{BH} + 1p_{BT} &= 1
-    \end{align}
-    $$
-  </p>
-  <p>
-    Aus diesem Gleichungssystem ergibt sich $p_{BH} = \frac{2}{103}\approx
-    1,9\%$
-    und $p_{BT} = \frac{101}{103}\approx 98,1\%$. Auch hier ergibt sich
-    äquivalent
-    aus $E_B[Heads] = E_B[Tails]$ für die Wahrscheinlichkeiten von A $p_{AH} =
-    \frac{2}{103}\approx 1,9\%$ und $p_{AT} = \frac{101}{103}\approx 98,1\%$.
-  </p>
+    <br>
 
-  <details class="aufgabe">
-    <summary>Aufgabe 7</summary>
-    <div class="content">
-      $p_{AH} ≈ 1,9%$. Warum spielt Spieler A so selten Heads, obwohl er mit
-      Heads
+    <p>
+      <b>Satz von Nash</b>: Erlaubt man gemischte Strategien, so gibt es in
+      jedem
+      Zero-sum-game ein Nash-Equilibrium.
+    </p>
+
+    <br>
+
+    <p>
+      Außerdem gilt der folgende Satz:
+    </p>
+
+    <br>
+
+    <p>
+      <b>Satz der gleichen Erwartungswerte</b>: In einem Nash-Equilibrium sind
       die
-      Möglichkeit hat 100 Punkte zu machen und mit Tails nur 1 Punkt gewinnen
-      kann?
+      Erwartungswerte für die verschiedenen Spielzüge die ein Spieler in seiner
+      gemischten Strategie hat gleich.
+    </p>
+    <br>
+    <p>
+      <b>Beweis</b>: Wir führen den Beweis per Widerspruch. Seien die Strategien
+      von
+      Alice
+      und Bob so, dass sie sich in einem Nash-Equilibrium befinden. Nehmen wir
+      nun
+      an,
+      dass die Erwartungswerte der Spielzüge die Alice in ihrer Strategie hat
+      nicht
+      gleich sind. Dann gibt es in der Strategie von Alice zwei Spielzüge $s_1,
+      s_2$
+      so,
+      dass der Erwartungswert für Alice, wenn sie $s_1$ spielt, größer ist als
+      der
+      Erwartungswert, wenn sie $s_2$ spielt. Da Alice aber rational spielt,
+      würde
+      sie
+      dann aber statt $s_2$ immer $s_1$ spielen. Sie würde also ihre Strategie
+      anpassen,
+      und damit ihren Erwartungswert steigern. Ein Widerspruch zur Annahme, dass
+      sich
+      Alice und Bob in einem Nash-Equilibrium befinden. Also kann unsere Annahme
+      nur
+      falsch sein. Die Erwartungswerte für die verschiedenen Spielzüge die ein
+      Spieler
+      in seiner gemischten Strategie hat müssen also gleich sein. $\blacksquare$
+
+    </p>
+
+    <h3>Rock, Paper, Scissors</h3>
+
+    <p>
+      Betrachten wir nun das allen bekannte Spiel Rock, Paper, Scissors.
+      Bekanntlich
+      besiegt Rock Scissors, Scissors Paper und Paper Rock.
+    </p>
+
+    <div class="table-container">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>$p_{BR}$</td>
+          <td>$p_{BP}$</td>
+          <td>$p_{BS}$</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>B: Rock</td>
+          <td>B: Paper</td>
+          <td>B: Scissors</td>
+        </tr>
+        <tr>
+          <td>$p_{AR}$</td>
+          <td>A: Rock</td>
+          <td>A: 0 | B: 0</td>
+          <td>A: -1 | B: 1</td>
+          <td>A: 1 | B: -1</td>
+        </tr>
+        <tr>
+          <td>$p_{AP}$</td>
+          <td>A: Paper</td>
+          <td>A: 1 | B: -1</td>
+          <td>A: 0 | B: 0</td>
+          <td>A: -1 | B: 1</td>
+        </tr>
+        <tr>
+          <td>$p_{AS}$</td>
+          <td>A: Scissors</td>
+          <td>A: -1 | B: 1</td>
+          <td>A: 1 | B: -1</td>
+          <td>A: 0 | B: 0</td>
+        </tr>
+      </table>
+      <p> <i>Abb: Pay-Off Matrix des Spiels Rock, Paper, Scissors
+        </i> </p>
     </div>
-  </details>
-  <details class="aufgabe">
-    <summary>Lösung der Aufgabe 7</summary>
-    <div class="content">
-      Das liegt daran, dass Spieler B natürlich Angst vor den -100 Punkten bei
-      (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) hat und daher sehr häufig Tails spielen wird. Das
-      kann
-      Spieler A dann ausnutzen, indem er auch häufig Tails spielt um dann mit
-      (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) 1 Punkt zu gewinnen. Beide spielen aber immer mal
-      wieder trotzdem Heads, damit sich der andere nicht darauf verlassen kann,
-      dass
-      immer Tails gespielt wird.
+
+    <details class="aufgabe">
+      <summary>Aufgabe 5</summary>
+      <div class="content">
+        Warum gibt es bei Rock, Paper Scissors kein Nash-Equilibrium aus reinen
+        Strategien?
+      </div>
+    </details>
+    <details class="aufgabe">
+      <summary>Lösung der Aufgabe 5</summary>
+      <div class="content">
+        Jede reine Strategie kann durch eine andere reine Strategie besiegt
+        werden.
+        Somit kann bei jeder Kombination aus reinen Strategien einer der Spieler
+        reagieren um sich zu verbessern.
+      </div>
+    </details>
+
+    <p>
+      Nach dem Satz von Nash muss es aber ein Nash-Equilibrium mit gemischten
+      Strategien geben. Dieses wollen wir nun berechnen. Dafür benennen wir die
+      Wahrscheinlichkeiten mit denen die beiden Spieler die verschiedenen
+      Spielzüge
+      wählen. Beispielsweise steht $p_{AR}$ für die Wahrscheinlichkeit, dass
+      Spieler A
+      Rock spielt und $p_{BS}$ dafür, dass Spieler B Scissors
+      spielt. Um diese Wahrscheinlichkeiten zu berechnen nutzen wir den Satz der
+      gleichen Erwartungswerte. Demnach gilt nämlich, dass $E_A[Rock]$ (der
+      Erwartungswert für Spieler A,
+      wenn er Rock spielt), $E_A[Paper]$ und $E_A[Scissors]$ gleich sind.
+    </p>
+    <br>
+    <p>Die Erwartungswerte für A können wir leicht mit den Ergebnissen von A und
+      den
+      Wahrscheinlichkeiten von B berechnen.</p>
+    <br>
+    <p>
+      $$
+      \begin{align}
+      E_A[Rock] &= 0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS}\\
+      E_A[Paper] &= 1\cdot p_{BR} + 0\cdot p_{BP} - 1\cdot p_{BS}\\
+      E_A[Scissors] &= -1\cdot p_{BR} + 1\cdot p_{BP} + 0\cdot p_{BS}
+      \end{align}
+      $$
+    </p>
+    <p>
+      Nun können wir $E_A[Rock]$ mit $E_A[Paper]$ und $E_A[Scissors]$
+      gleichsetzen:
+    </p>
+    <p>
+      $$
+      \begin{align}
+      0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= 1\cdot p_{BR} + 0\cdot
+      p_{BP} -
+      1\cdot p_{BS}\\
+      0\cdot p_{BR} - 1\cdot p_{BP} + 1\cdot p_{BS} &= -1\cdot p_{BR} + 1\cdot
+      p_{BP}
+      + 0\cdot p_{BS}
+      \end{align}
+      $$
+    </p>
+    <p>
+      Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BR},
+      p_{BP},
+      p_{BS}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
+      Gleichungssystem:
+    </p>
+    <p>
+      $$
+      \begin{align}
+      -1p_{BR} - 1p_{BP} + 2p_{BS} &= 0\\
+      1p_{BR} - 2p_{BP} + 1p_{BS} &= 0\\
+      1p_{BR} + 1p_{BP} + 1p_{BS} &= 1
+      \end{align}
+      $$
+    </p>
+    <p>
+      Aus diesem Gleichungssystem ergibt sich $p_{BR} = p_{BP} = p_{BS} =
+      \frac{1}{3}$. Äquivalent ergibt sich aus $E_B[Rock] = E_B[Paper] =
+      E_B[Scissors]$ für die Wahrscheinlichkeiten von A $p_{AR} = p_{AP} =
+      p_{AS}
+      =
+      \frac{1}{3}$.
+    </p>
+    <br>
+    <p>
+      Dieses Ergebnis mag wenig überraschend sein, da die Pay-Off-Matrix von
+      Rock,
+      Paper, Scissors symmetrisch ist. Interessanter wird das ganze bei einer
+      asymmetrischen Pay-Off- Matrix.
+    </p>
+
+    <h3>Matching Pennies</h3>
+
+    <p>
+      Wir betrachten als weiteres Spiel
+      Matching
+      Pennies. Beide Spieler haben eine Münze und können entscheiden, ob sie
+      Heads
+      oder Tails spielen (die Münze wird nicht geworfen, sondern jeder Spieler
+      entscheidet, mit welcher Seite nach oben er die Münze auf den Tisch legt).
+      Wenn
+      nun beide Spieler das gleiche spielen, dann gewinnt Spieler A und wenn sie
+      unterschiedlich spielen, dann gewinnt Spieler B. Die Wahrscheinlichkeiten
+      für
+      die einzelnen Spielzüge benennen wir äquivalent zum vorherigen Beispiel
+      ($p_{AH}$
+      ist die Wahrscheinlichkeit dass Spieler A Heads spielt...).
+    </p>
+
+
+    <div class="table-container">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>$p_{BH}$</td>
+          <td>$p_{BT}$</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>B: Heads</td>
+          <td>B: Tails</td>
+        </tr>
+        <tr>
+          <td>$p_{AH}$</td>
+          <td>A: Heads</td>
+          <td>A: 1 | B: -1</td>
+          <td>A: -1 | B: 1</td>
+        </tr>
+        <tr>
+          <td>$p_{AT}$</td>
+          <td>A: Tails</td>
+          <td>A: -1 | B: 1</td>
+          <td>A: 1 | B: -1</td>
+        </tr>
+      </table>
+      <p> <i>Abb: Pay-Off Matrix des Spiels Matching Pennies
+        </i> </p>
     </div>
-  </details>
 
-  <h2>Was haben wir gelernt?</h2>
-  <ul class="ul">
-    <li>Bei Perfect Information zero-sum-games kann eine KI mit unbegrenzter
-      Zeit dem
-      einfachen Minimax Algorithmus folgen um die optimale Strategie zu spielen.
-      Sobald die KI zeitbeschränkt ist, oder das Spiel so komplex wird, dass ein
-      komplettes Generieren des Spielbaums nicht mehr praktikabel ist, kann der
-      Baum
-      mit Hilfe von Alpha-Beta-Pruning und einer guten Move-Ordering-Heuristik
-      doppelt
-      so tief generiert werden wie ohne.
-    </li>
-    <li>
-      Das Nash-Equilibrium, also die Kombination aus Strategien bei der es sich
-      für keinen Spieler lohnt seine Strategie zu ändern ohne, dass der andere
-      dies ebenfalls tut, liegt beim klassischen Prisoners Dilemma, bei der
-      Kombination (gestehen, gestehen). Durch eine undefinierte Anzahl an
-      Wiederholungen des Spiels ziehen Spieler dennoch in Betracht zu leugnen,
-      um ihren Gewinn zu optimieren.
-    </li>
-    <li>
-      Bei einfachen Spielen, bei denen beide Spieler entscheiden welchen
-      Spielzug sie spielen, ohne zu wissen was der andere spielt, gibt es mit
-      gemischten Strategien immer ein Nash-Equilibrium.
-    </li>
-  </ul>
+    <details class="aufgabe">
+      <summary>Aufgabe 6</summary>
+      <div class="content">
+        Diese Pay-Off-Matrix ist nun wieder symmetrisch. Was sind die
+        Wahrscheinlichkeiten für die Strategien, die das Nash-Equilibrium
+        bilden?
+      </div>
+    </details>
+    <details class="aufgabe">
+      <summary>Lösung der Aufgabe 6</summary>
+      <div class="content">
+        Äquivalent zum Rock, Paper, Scissors Beispiel ergibt sich $p_{AH} =
+        p_{AT}
+        = p_{BH} = p_{BT} = \frac{1}{2}$
+      </div>
+    </details>
 
-  <h2>Literatur</h2>
-  <ul class="ul">
-    <li>
-      Artificial Intelligence, A Modern Approach, Third Edition - Stuart Russel,
-      Peter Norvig
-    </li>
-    <li>
-      Introducing Game Theory: A Graphic Guide - Ivan Pastine, Tuvana Pastine,
-      Tom
-      Humberstone
-    </li>
-    <li>
-      The Joy Of Game Theory: An Introduction To Strategic Thinking - Presh
-      Talwalker
-    </li>
-    <li>
-      <a href="https://www.javatpoint.com/ai-adversarial-search">Adversarial
-        Search - Javatpoint</a>
-    </li>
-    <li>
-      <a href="https://de.wikipedia.org/wiki/Gefangenendilemma">Gefangenendilemma
-        - Wikipedia
-      </a>
-    </li>
-  </ul>
+    <p>
+      Nun wollen wir aber die Pay-Off-Matrix ein wenig verändern. Spieler A
+      gewinnt
+      nun 100 Punkte, wenn er mit (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) gewinnt und weiterhin
+      nur
+      einen Punkt, wenn er mit (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) gewinnt.
+
+    </p>
+
+    <div class="table-container">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>$p_{BH}$</td>
+          <td>$p_{BT}$</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>B: Heads</td>
+          <td>B: Tails</td>
+        </tr>
+        <tr>
+          <td>$p_{AH}$</td>
+          <td>A: Heads</td>
+          <td>A: 100 | B: -100</td>
+          <td>A: -1 | B: 1</td>
+        </tr>
+        <tr>
+          <td>$p_{AT}$</td>
+          <td>A: Tails</td>
+          <td>A: -1 | B: 1</td>
+          <td>A: 1 | B: -1</td>
+        </tr>
+      </table>
+      <p> <i>Abb: Pay-Off Matrix der Abwandlung des Spiels Matching Pennies
+        </i> </p>
+    </div>
+
+    <p>
+      Genau wie im Rock, Paper, Scissors Beispiel nutzen wir den Satz der
+      gleichen
+      Erwartungswerte:
+    </p>
+    <p>
+      $$
+      \begin{align}
+      E_A[Heads] = E_A[Tails]
+      \end{align}
+      $$
+    </p>
+    <p>
+      Die Erwartungswerte für A können wir wieder mit den Ergebnissen von A und
+      den Wahrscheinlichkeiten von B berechnen.
+    </p>
+    <p>
+      $$
+      \begin{align}
+      E_A[Heads] &= 100\cdot p_{BH} - 1\cdot p_{BT}\\
+      E_A[Tails] &= -1\cdot p_{BH} + 1\cdot p_{BT}
+      \end{align}
+      $$
+    </p>
+    <p>
+      Nun können wir $E_A[Heads]$ mit $E_A[Tails]$ gleichsetzen:
+    </p>
+    <p>
+      $$
+      \begin{align}
+      100\cdot p_{BH} - 1\cdot p_{BT} = -1\cdot p_{BH} + 1\cdot p_{BT}
+      \end{align}
+      $$
+    </p>
+    <p>
+      Zusammen mit der Eigenschaft, dass die Wahrscheinlichkeiten $p_{BH}$ und
+      $p_{BT}$ zusammen $1$ ergeben müssen, ergibt sich das folgende lineare
+      Gleichungssystem:
+    </p>
+    <p>
+      $$
+      \begin{align}
+      101p_{BH} - 2p_{BT} &= 0\\
+      1p_{BH} + 1p_{BT} &= 1
+      \end{align}
+      $$
+    </p>
+    <p>
+      Aus diesem Gleichungssystem ergibt sich $p_{BH} = \frac{2}{103}\approx
+      1,9\%$
+      und $p_{BT} = \frac{101}{103}\approx 98,1\%$. Auch hier ergibt sich
+      äquivalent
+      aus $E_B[Heads] = E_B[Tails]$ für die Wahrscheinlichkeiten von A $p_{AH} =
+      \frac{2}{103}\approx 1,9\%$ und $p_{AT} = \frac{101}{103}\approx 98,1\%$.
+    </p>
+
+    <details class="aufgabe">
+      <summary>Aufgabe 7</summary>
+      <div class="content">
+        $p_{AH} ≈ 1,9%$. Warum spielt Spieler A so selten Heads, obwohl er mit
+        Heads
+        die
+        Möglichkeit hat 100 Punkte zu machen und mit Tails nur 1 Punkt gewinnen
+        kann?
+      </div>
+    </details>
+    <details class="aufgabe">
+      <summary>Lösung der Aufgabe 7</summary>
+      <div class="content">
+        Das liegt daran, dass Spieler B natürlich Angst vor den -100 Punkten bei
+        (𝐻𝑒𝑎𝑑𝑠, 𝐻𝑒𝑎𝑑𝑠) hat und daher sehr häufig Tails spielen wird.
+        Das
+        kann
+        Spieler A dann ausnutzen, indem er auch häufig Tails spielt um dann mit
+        (𝑇𝑎𝑖𝑙𝑠, 𝑇𝑎𝑖𝑙𝑠) 1 Punkt zu gewinnen. Beide spielen aber immer
+        mal
+        wieder trotzdem Heads, damit sich der andere nicht darauf verlassen
+        kann,
+        dass
+        immer Tails gespielt wird.
+      </div>
+    </details>
+
+    <h2>Was haben wir gelernt?</h2>
+    <ul class="ul">
+      <li>Bei Perfect Information Zero-sum-games kann eine KI mit unbegrenzter
+        Zeit dem
+        einfachen 𝑀𝑖𝑛𝑖𝑚𝑎𝑥 Algorithmus folgen um die optimale Strategie zu
+        spielen.
+        Sobald die KI zeitbeschränkt ist, oder das Spiel so komplex wird, dass
+        ein
+        komplettes Generieren des Spielbaums nicht mehr praktikabel ist, kann
+        der
+        Baum
+        mit Hilfe von <i>Alpha-Beta-Pruning</i> und einer guten
+        Move-Ordering-Heuristik
+        doppelt
+        so tief generiert werden wie ohne.
+      </li>
+      <li>
+        Das Nash-Equilibrium besteht beim klassischen Prisoners Dilemma, aus der
+        Kombination <br> <i>(gestehen, gestehen)</i>. Durch eine undefinierte
+        Anzahl an
+        Wiederholungen des Spiels kann es für Spieler trotzdem sinnvoll sein zu
+        leugnen
+        um ihren Gewinn zu optimieren.
+      </li>
+      <li>
+        Erlaubt man gemischte Strategien, so gibt es in jedem Zero-sum-game ein
+        Nash-Equilibrium.
+      </li>
+    </ul>
+
+    <h2>Literatur</h2>
+    <ul class="ul">
+      <li>
+        Artificial Intelligence, A Modern Approach, Third Edition - Stuart
+        Russel,
+        Peter Norvig
+      </li>
+      <li>
+        Introducing Game Theory: A Graphic Guide - Ivan Pastine, Tuvana Pastine,
+        Tom
+        Humberstone
+      </li>
+      <li>
+        The Joy Of Game Theory: An Introduction To Strategic Thinking - Presh
+        Talwalker
+      </li>
+      <li>
+        <a href="https://www.javatpoint.com/ai-adversarial-search"
+          target="_blank">Adversarial
+          Search - Javatpoint</a>
+      </li>
+      <li>
+        <a href="https://de.wikipedia.org/wiki/Gefangenendilemma"
+          target="_blank">Gefangenendilemma
+          - Wikipedia
+        </a>
+      </li>
+    </ul>
 
 
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
+    <script>
+      var slideIndex = 1;
+      showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("slide");
-      if (n > x.length) { slideIndex = 1 }
-      if (n < 1) { slideIndex = x.length }
-      document.getElementById("slide-number").innerText = slideIndex + "\/" + x.length
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
+      function plusDivs(n) {
+        showDivs(slideIndex += n);
       }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
-  <div class="space"></div>
-  <footer> </footer>
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("slide");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        document.getElementById("slide-number").innerText = slideIndex + "\/" + x.length
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+      }
+    </script>
+    <div class="space"></div>
+    <footer> </footer>
 </body>
 
 
 </html>
-
-<!-- TODO: Idee, fachbegriffe auf Wikipedia verlinken -->
-<!-- 
-    Wichtig:
-    - besser kontextualisieren 
-    - Done: Summe geometrische Reihe erklären 
-    - Done: Erwartungswerte gleich -> Beweis aufschreiben 
-    - sagen, dass wir den nutzen wert bei mehreren Runden prisoners Dilemma aufaddieren können
-    - Sollen die Studikinder nicht selber auf den Minimax Algo kommen??
-    - Done: Beschreibungen, der Abbildungen (PayOff Matrizen)
--->
